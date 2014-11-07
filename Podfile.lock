@@ -1,0 +1,27 @@
+PODS:
+  - Google-API-Client/Common (0.1.1):
+    - gtm-oauth2
+    - GTMHTTPFetcher
+  - Google-API-Client/YouTube (0.1.1):
+    - Google-API-Client/Common
+    - gtm-oauth2
+    - GTMHTTPFetcher
+  - googleplus-ios-sdk (1.7.1)
+  - gtm-oauth2 (0.1.0):
+    - GTMHTTPFetcher
+  - GTMHTTPFetcher (0.1.0)
+  - youtube-ios-player-helper (0.1.1)
+
+DEPENDENCIES:
+  - Google-API-Client/YouTube
+  - googleplus-ios-sdk (~> 1.7.1)
+  - youtube-ios-player-helper (~> 0.1.1)
+
+SPEC CHECKSUMS:
+  Google-API-Client: 69cd2a04c649abe9f3fa6695bc4bb8965373f204
+  googleplus-ios-sdk: b0f6cd8aa29c51d0048cace8dc3bd8f4ae0806bb
+  gtm-oauth2: 64f2d404a50676ab63b5437a02a7567da8f8b7fa
+  GTMHTTPFetcher: 0f02d5a5803dd08736462981064de6a7f59cf9bd
+  youtube-ios-player-helper: 53aecd0b4763a77e6890e9a7c55abb7b5c4bedea
+
+COCOAPODS: 0.34.4

@@ -1,0 +1,7 @@
+FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/googleplus-ios-sdk/google-plus-ios-sdk-1.7.1" "$(PODS_ROOT)/googleplus-ios-sdk/google-plus-ios-sdk-1.7.1"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GTMHTTPFetcher" "${PODS_ROOT}/Headers/Public/Google-API-Client" "${PODS_ROOT}/Headers/Public/googleplus-ios-sdk" "${PODS_ROOT}/Headers/Public/gtm-oauth2" "${PODS_ROOT}/Headers/Public/youtube-ios-player-helper"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GTMHTTPFetcher" -isystem "${PODS_ROOT}/Headers/Public/Google-API-Client" -isystem "${PODS_ROOT}/Headers/Public/googleplus-ios-sdk" -isystem "${PODS_ROOT}/Headers/Public/gtm-oauth2" -isystem "${PODS_ROOT}/Headers/Public/youtube-ios-player-helper"
+OTHER_LDFLAGS = -ObjC -l"Pods-YouTubePlaylists-GTMHTTPFetcher" -l"Pods-YouTubePlaylists-Google-API-Client" -l"Pods-YouTubePlaylists-googleplus-ios-sdk" -l"Pods-YouTubePlaylists-gtm-oauth2" -l"Pods-YouTubePlaylists-youtube-ios-player-helper" -framework "AddressBook" -framework "AssetsLibrary" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMotion" -framework "CoreText" -framework "Foundation" -framework "GoogleOpenSource" -framework "GooglePlus" -framework "MediaPlayer" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_ROOT = ${SRCROOT}/Pods
