@@ -20,12 +20,14 @@
     NSString* cellSelector;
     NSMutableArray* playListNames;
     GoogleRegisteredUserModel* user;
+    UIActivityIndicatorView *spinner;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     cellSelector = @"PlaylistCell";
     
+    [self loadSpinner];
     [self appendLongPressGesture];
 }
 
@@ -127,6 +129,13 @@
 
 #pragma mark - Helper methods
 
+-(void) loadSpinner {
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake((self.view.frame.size.width / 2), 100);
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+}
+
 /** @brief Returns a customized snapshot of a given view. */
 - (UIView *)customSnapshoFromView:(UIView *)inputView {
     
@@ -174,6 +183,7 @@
         [playListNames addObject:list];
     }
     
+    [spinner stopAnimating];
     [self.subTableView reloadData];
 }
 

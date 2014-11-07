@@ -10,14 +10,14 @@
 	<string>YouTubePlaylists</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>5A543048799348C969D425744D6B1C58078E2DE4</key>
+		<key>BE46ACE76E2D05CCEAA0DA36725686174B15087C</key>
 		<string>https://github.com/diana-stancheva/YouTubePlaylists.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>YouTubePlaylists.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>5A543048799348C969D425744D6B1C58078E2DE4</key>
+		<key>BE46ACE76E2D05CCEAA0DA36725686174B15087C</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>5A543048799348C969D425744D6B1C58078E2DE4</string>
+	<string>BE46ACE76E2D05CCEAA0DA36725686174B15087C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5A543048799348C969D425744D6B1C58078E2DE4</string>
+			<string>BE46ACE76E2D05CCEAA0DA36725686174B15087C</string>
 			<key>IDESourceControlWCCName</key>
 			<string>YouTubePlaylists</string>
 		</dict>

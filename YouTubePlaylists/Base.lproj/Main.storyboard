@@ -40,18 +40,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DVo-Fq-JEI">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="pSD-It-HwA">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MFc-uO-Qfv" customClass="GPPSignInButton">
-                                <rect key="frame" x="204" y="133" width="100" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="Red-signin_Google_base_44dp.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="DVo-Fq-JEI"/>
                     <connections>
                         <outlet property="subTableView" destination="fSo-MC-GHY" id="EhA-3W-Tlo"/>
                     </connections>
@@ -193,7 +182,4 @@
             <point key="canvasLocation" x="31" y="168"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Red-signin_Google_base_44dp.png" width="320" height="108"/>
-    </resources>
 </document>
