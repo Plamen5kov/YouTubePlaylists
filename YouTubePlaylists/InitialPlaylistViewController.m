@@ -10,10 +10,13 @@
 #import "GoogleRegisteredUserModel.h"
 #import "YouTubeSignInViewController.h"
 #import "YouTubePlaylistModel.h"
+#import "BackgroundMusicController.h"
+#import <CoreMotion/CoreMotion.h>
 
 @interface InitialPlaylistViewController ()<NSURLConnectionDataDelegate>
 @property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *longPressGesture;
-
+@property(nonatomic, strong) AVAudioPlayer *backgroundMusic;
+@property (strong, nonatomic) CMMotionManager *motionManager;
 @end
 
 @implementation InitialPlaylistViewController{
@@ -21,6 +24,7 @@
     NSMutableArray* playListNames;
     GoogleRegisteredUserModel* user;
     UIActivityIndicatorView *spinner;
+    BackgroundMusicController* audioController;
 }
 
 - (void)viewDidLoad {
@@ -29,7 +33,51 @@
     
     [self loadSpinner];
     [self appendLongPressGesture];
+    [self playMusicInBackground];
+//    [self setUpMotionManager];
+    
 }
+
+#pragma mark core motion
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if(motion == UIEventSubtypeMotionShake)
+    {
+        if(audioController.isPlaying == YES){
+            [_backgroundMusic stop];
+        } else{
+            [_backgroundMusic play];
+        }
+        audioController.isPlaying = !audioController.isPlaying;
+    }
+}
+
+//alternative to shake
+//-(void) setUpMotionManager{
+//
+//    CMMotionManager *motionManager = [[CMMotionManager alloc] init];
+//    motionManager.deviceMotionUpdateInterval = 0.1/60.0;
+//    
+//    if (motionManager.deviceMotionAvailable ) {
+//        id queue = [NSOperationQueue currentQueue];
+//        [motionManager startDeviceMotionUpdatesToQueue:queue
+//                                           withHandler:^ (CMDeviceMotion *motionData, NSError *error) {
+//                                               CMAttitude *attitude = motionData.attitude;
+//                                               CMAcceleration gravity = motionData.gravity;
+//                                               CMAcceleration userAcceleration = motionData.userAcceleration;
+//                                               CMRotationRate rotate = motionData.rotationRate;
+//                                               CMCalibratedMagneticField field = motionData.magneticField;
+//
+//                                               if(audioController.isPlaying == YES){
+//                                                   [_backgroundMusic stop];
+//                                               } else{
+//                                                   [_backgroundMusic play];
+//                                               }
+//                                               audioController.isPlaying = !audioController.isPlaying;
+//                                           }];
+//    }
+//}
 
 -(void) appendLongPressGesture {
     self.longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
@@ -129,6 +177,21 @@
 
 #pragma mark - Helper methods
 
+-(void) playMusicInBackground{
+    if([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)])
+    {
+        audioController = [[BackgroundMusicController alloc] init];
+        _backgroundMusic = audioController.backgroundMusic;
+        
+        dispatch_queue_t queue = dispatch_queue_create("com.yourdomain.yourappname", NULL);
+        dispatch_async(queue, ^{
+            _backgroundMusic.volume = 0.7;
+            [_backgroundMusic play];
+            audioController.isPlaying = YES;
+        });
+    }
+}
+
 -(void) loadSpinner {
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake((self.view.frame.size.width / 2), 100);
@@ -136,7 +199,6 @@
     [spinner startAnimating];
 }
 
-/** @brief Returns a customized snapshot of a given view. */
 - (UIView *)customSnapshoFromView:(UIView *)inputView {
     
     UIView *snapshot = [inputView snapshotViewAfterScreenUpdates:YES];

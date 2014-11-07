@@ -14,9 +14,9 @@
 		840A27FC1A04FAAF00C678DF /* HttpPersister.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A27FB1A04FAAF00C678DF /* HttpPersister.m */; };
 		8451FBFE1A0CEFEC001BF49A /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451FBF51A0CEFEC001BF49A /* YTPlayerView.m */; };
 		8451FBFF1A0CEFEC001BF49A /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 8451FBF61A0CEFEC001BF49A /* Assets */; };
-		8451FC001A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8451FBF81A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper.xcconfig */; };
-		8451FC011A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-Private.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8451FBF91A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-Private.xcconfig */; };
 		8451FC021A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451FBFA1A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-dummy.m */; };
+		847831191A0D5C11007FAFD4 /* chill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 847831181A0D5C11007FAFD4 /* chill.mp3 */; };
+		8478311C1A0D5CAA007FAFD4 /* BackgroundMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */; };
 		84888FEE1A0A179600714EF3 /* YouTubeSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */; };
 		849EF2351A00E2CB00E8DF08 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2341A00E2CB00E8DF08 /* main.m */; };
 		849EF2381A00E2CB00E8DF08 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2371A00E2CB00E8DF08 /* AppDelegate.m */; };
@@ -61,6 +61,9 @@
 		8451FBF91A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-Private.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Pods-YouTubePlaylists-youtube-ios-player-helper-Private.xcconfig"; sourceTree = "<group>"; };
 		8451FBFA1A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Pods-YouTubePlaylists-youtube-ios-player-helper-dummy.m"; sourceTree = "<group>"; };
 		8451FBFB1A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pods-YouTubePlaylists-youtube-ios-player-helper-prefix.pch"; sourceTree = "<group>"; };
+		847831181A0D5C11007FAFD4 /* chill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chill.mp3; sourceTree = "<group>"; };
+		8478311A1A0D5CAA007FAFD4 /* BackgroundMusicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundMusicController.h; sourceTree = "<group>"; };
+		8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundMusicController.m; sourceTree = "<group>"; };
 		84888FEB1A0A179600714EF3 /* YouTubeSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeSignInViewController.h; sourceTree = "<group>"; };
 		84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeSignInViewController.m; sourceTree = "<group>"; };
 		849EF22F1A00E2CB00E8DF08 /* YouTubePlaylists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlaylists.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +117,7 @@
 		7AC1C70D367DE682346BFD74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8451FBFD1A0CEFEC001BF49A /* youtube-ios-player-helper */,
 				849EF25F1A00F7A600E8DF08 /* libPods-YouTubePlaylists-gtm-oauth2.a */,
 				849EF25D1A00F78700E8DF08 /* libPods-YouTubePlaylists-googleplus-ios-sdk.a */,
 				7FECEC818DC903011E220849 /* libPods-YouTubePlaylists.a */,
@@ -124,6 +128,8 @@
 		840A27B71A04D87E00C678DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84D429FD1A0A28F500C0F7CC /* VideoDetailsTableViewCell.h */,
+				84D429FE1A0A28F500C0F7CC /* VideoDetailsTableViewCell.m */,
 				849EF2691A04E4DE00E8DF08 /* GoogleRegisteredUserModel.h */,
 				849EF26A1A04E4DE00E8DF08 /* GoogleRegisteredUserModel.m */,
 				840A27F41A04FA2500C678DF /* YouTubePlaylistModel.h */,
@@ -137,8 +143,6 @@
 		840A27B81A04D88D00C678DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				84D429FD1A0A28F500C0F7CC /* VideoDetailsTableViewCell.h */,
-				84D429FE1A0A28F500C0F7CC /* VideoDetailsTableViewCell.m */,
 				84D429FF1A0A28F500C0F7CC /* VideoDetailsTableViewCell.xib */,
 			);
 			name = Views;
@@ -147,8 +151,7 @@
 		840A27B91A04D89B00C678DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				849EF2661A0246FA00E8DF08 /* MP3DownloaderController.h */,
-				849EF2671A0246FA00E8DF08 /* MP3DownloaderController.m */,
+				84888FEA1A0A176D00714EF3 /* Helpers */,
 				849EF23C1A00E2CB00E8DF08 /* InitialPlaylistViewController.h */,
 				849EF23D1A00E2CB00E8DF08 /* InitialPlaylistViewController.m */,
 				840A27F11A04F7B100C678DF /* DetailedPlaylistViewController.h */,
@@ -195,16 +198,28 @@
 				8451FBFC1A0CEFEC001BF49A /* Support Files */,
 			);
 			name = "youtube-ios-player-helper";
-			path = "../Pods/youtube-ios-player-helper";
+			path = "Pods/youtube-ios-player-helper";
 			sourceTree = "<group>";
 		};
-		84888FEA1A0A176D00714EF3 /* YouTubeSignIn */ = {
+		847831171A0D5C01007FAFD4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				847831181A0D5C11007FAFD4 /* chill.mp3 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		84888FEA1A0A176D00714EF3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				849EF2661A0246FA00E8DF08 /* MP3DownloaderController.h */,
+				849EF2671A0246FA00E8DF08 /* MP3DownloaderController.m */,
 				84888FEB1A0A179600714EF3 /* YouTubeSignInViewController.h */,
 				84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */,
+				8478311A1A0D5CAA007FAFD4 /* BackgroundMusicController.h */,
+				8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */,
 			);
-			name = YouTubeSignIn;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		849EF2261A00E2CB00E8DF08 = {
@@ -230,9 +245,8 @@
 		849EF2311A00E2CB00E8DF08 /* YouTubePlaylists */ = {
 			isa = PBXGroup;
 			children = (
-				8451FBFD1A0CEFEC001BF49A /* youtube-ios-player-helper */,
+				847831171A0D5C01007FAFD4 /* Resources */,
 				84A7B35C1A0A80E7006C973D /* Categories */,
-				84888FEA1A0A176D00714EF3 /* YouTubeSignIn */,
 				840A27BB1A04D8F000C678DF /* Common */,
 				840A27B91A04D89B00C678DF /* Controllers */,
 				840A27B81A04D88D00C678DF /* Views */,
@@ -374,10 +388,9 @@
 			files = (
 				849EF2411A00E2CB00E8DF08 /* Main.storyboard in Resources */,
 				849EF2461A00E2CB00E8DF08 /* LaunchScreen.xib in Resources */,
-				8451FC011A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-Private.xcconfig in Resources */,
 				849EF2431A00E2CB00E8DF08 /* Images.xcassets in Resources */,
 				84D42A011A0A28F500C0F7CC /* VideoDetailsTableViewCell.xib in Resources */,
-				8451FC001A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper.xcconfig in Resources */,
+				847831191A0D5C11007FAFD4 /* chill.mp3 in Resources */,
 				8451FBFF1A0CEFEC001BF49A /* Assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,6 +447,7 @@
 				84D42A001A0A28F500C0F7CC /* VideoDetailsTableViewCell.m in Sources */,
 				840A27F61A04FA2500C678DF /* YouTubePlaylistModel.m in Sources */,
 				849EF2381A00E2CB00E8DF08 /* AppDelegate.m in Sources */,
+				8478311C1A0D5CAA007FAFD4 /* BackgroundMusicController.m in Sources */,
 				8451FBFE1A0CEFEC001BF49A /* YTPlayerView.m in Sources */,
 				84888FEE1A0A179600714EF3 /* YouTubeSignInViewController.m in Sources */,
 				849EF2351A00E2CB00E8DF08 /* main.m in Sources */,

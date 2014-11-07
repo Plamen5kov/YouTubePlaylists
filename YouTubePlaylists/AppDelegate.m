@@ -26,6 +26,7 @@
 //    self.navigation = [[UINavigationController alloc]initWithRootViewController:controller];
 //    self.window.rootViewController = self.navigation;
 //    [self.window makeKeyAndVisible];
+    application.applicationSupportsShakeToEdit = YES;
     
     return YES;
 }

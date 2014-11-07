@@ -11,13 +11,13 @@
 @interface HttpPersister : NSObject
 
 // make http get request and return id responce (we will cast the id later to what we need) / the method returns status code(optional handling)
--(id) getWithUrl: (NSString *) specifficURL;
+//-(id) getWithUrl: (NSString *) specifficURL;
 //normal and with callback
 
 // make http post request and  ....
--(id) postWithUrl: (NSString *) specifficUrl
-       andHeaders: (NSString *) headers
-       andUrlBody: (NSString *) urlBody;
+//-(id) postWithUrl: (NSString *) specifficUrl
+//       andHeaders: (NSString *) headers
+//       andUrlBody: (NSString *) urlBody;
 // normal and with callback
 //-(id) postWithBlock: (^)(NSString * inputUrl);
 

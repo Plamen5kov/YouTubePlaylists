@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="njo-tx-Zg5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Initial Playlist View Controller-->
@@ -52,7 +53,7 @@
         <!--You Tube Sign In View Controller-->
         <scene sceneID="Kyp-e0-0fo">
             <objects>
-                <viewController storyboardIdentifier="SignInControllerNib" id="DZp-d4-KS0" customClass="YouTubeSignInViewController" sceneMemberID="viewController">
+                <viewController id="DZp-d4-KS0" customClass="YouTubeSignInViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8VY-bU-1n7"/>
                         <viewControllerLayoutGuide type="bottom" id="5YM-7E-Pdu"/>
@@ -61,34 +62,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SIGN IN VIEW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1d-f5-Lqf">
-                                <rect key="frame" x="246" y="44" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hto-Tu-YHS">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hto-Tu-YHS">
                                 <rect key="frame" x="0.0" y="98" width="600" height="482"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="DZp-d4-KS0" id="8dW-4t-Fzc"/>
                                 </connections>
                             </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN VIEW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1d-f5-Lqf">
+                                <rect key="frame" x="235" y="55" width="118" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="GRd-Fq-SEe"/>
+                                    <constraint firstAttribute="width" constant="118" id="RUb-G0-Prn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="F1d-f5-Lqf" firstAttribute="top" secondItem="8VY-bU-1n7" secondAttribute="bottom" constant="24" id="0Kg-K3-a4b"/>
-                            <constraint firstItem="Hto-Tu-YHS" firstAttribute="top" secondItem="F1d-f5-Lqf" secondAttribute="bottom" constant="33" id="Dwg-r4-vie"/>
+                            <constraint firstItem="F1d-f5-Lqf" firstAttribute="leading" secondItem="FUk-Wd-I8x" secondAttribute="leading" constant="235" id="9uB-p6-ggh"/>
                             <constraint firstAttribute="bottom" secondItem="Hto-Tu-YHS" secondAttribute="bottom" constant="20" symbolic="YES" id="Gsy-DX-LjK"/>
-                            <constraint firstItem="Hto-Tu-YHS" firstAttribute="centerX" secondItem="F1d-f5-Lqf" secondAttribute="centerX" id="Hlv-D2-n2f"/>
                             <constraint firstAttribute="trailing" secondItem="Hto-Tu-YHS" secondAttribute="trailing" id="PXg-hf-7II"/>
+                            <constraint firstItem="Hto-Tu-YHS" firstAttribute="top" secondItem="F1d-f5-Lqf" secondAttribute="bottom" constant="8" symbolic="YES" id="aps-UN-Mo0"/>
                             <constraint firstItem="Hto-Tu-YHS" firstAttribute="leading" secondItem="FUk-Wd-I8x" secondAttribute="leading" id="cGX-hM-vDI"/>
+                            <constraint firstItem="F1d-f5-Lqf" firstAttribute="top" secondItem="FUk-Wd-I8x" secondAttribute="topMargin" constant="55" id="dkL-Oa-GT1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xlg-kY-2cy"/>
                     <connections>
                         <outlet property="webview" destination="Hto-Tu-YHS" id="uBH-jm-vXV"/>
-                        <segue destination="vXZ-lx-hvc" kind="show" id="z1f-Kh-qUf"/>
+                        <segue destination="vXZ-lx-hvc" kind="presentation" identifier="goToInitialViewSegue" id="z1f-Kh-qUf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PCA-Su-rmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,8 +138,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w0w-Sg-CIq">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="trash" id="wji-e5-ADZ"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="4vF-mT-UNV"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="wji-e5-ADZ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4vF-mT-UNV"/>
                     </navigationItem>
                     <connections>
                         <outlet property="playerView" destination="5wl-KQ-gcb" id="JkH-eK-ZgV"/>
