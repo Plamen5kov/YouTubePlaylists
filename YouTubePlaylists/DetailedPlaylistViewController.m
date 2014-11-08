@@ -50,7 +50,7 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:link]];
     
-     NSString *authToken = @"Bearer ya29.uAD3ajMa86NPEAmS_Ghf0dStXzeTXZQ0CfkBlZaEU7U0apDx6uGRWN1KCRwVMx11CXT9C9gTurIyfw";
+     NSString *authToken = @"Bearer ya29.uADNKd4Ek_T7Qla0g0I2ucDqUd4U0hwNt5cUQ9tIvYfVkucgjKuTWN_kypZzOxuDYKbernN5k67Z0g";
     [request setValue:authToken forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     
@@ -61,7 +61,17 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
 
 -(void)connection:(NSURLRequest *) request didReceiveData:(NSData *)data{
     
-    NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSUTF8StringEncoding error: nil];
+    NSError* error = nil;
+    
+    NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSUTF8StringEncoding error: &error];
+    
+    if (error != nil) {
+        NSLog(@"Error parsing JSON.");
+    }
+    else {
+        NSLog(@"Array: %@", jsonDict);
+    }
+    
     NSLog(@"%@", jsonDict);
     NSArray* vTitles = [jsonDict  valueForKeyPath:@"items.snippet.title"];
     NSArray* vIds = [jsonDict  valueForKeyPath:@"items.contentDetails.videoId"];
@@ -122,6 +132,8 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     cell.videoTitle.text = [videosInPlaylist[indexPath.row] vTitle];
     cell.videoTitle.numberOfLines = 2;
     
+    cell.videoId.text = [videosInPlaylist[indexPath.row] vId];
+    
     NSString *imageUrl = [videosInPlaylist[indexPath.row] vThumbnailURL];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         cell.thumbnailImageView.image = [UIImage imageWithData:data];
@@ -130,6 +142,12 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    VideoDetailsTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"%@",cell.videoId.text);
+    [self.playerView loadWithVideoId:cell.videoId.text];
 }
 
 @end

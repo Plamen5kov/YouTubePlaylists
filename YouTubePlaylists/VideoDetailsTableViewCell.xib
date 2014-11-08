@@ -36,6 +36,11 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VideoId" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XcK-vW-NbJ">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mXV-67-YN5" firstAttribute="bottom" secondItem="O9m-S3-yuD" secondAttribute="bottom" id="1G5-cV-Uoo"/>
@@ -53,6 +58,7 @@
             <connections>
                 <outlet property="donloadToMP3Button" destination="LZP-Oj-k7p" id="Lgd-M4-OuQ"/>
                 <outlet property="thumbnailImageView" destination="O9m-S3-yuD" id="KxJ-Ai-0AF"/>
+                <outlet property="videoId" destination="XcK-vW-NbJ" id="0wT-0v-SDT"/>
                 <outlet property="videoTitle" destination="mXV-67-YN5" id="ERK-fZ-tZh"/>
             </connections>
             <point key="canvasLocation" x="581" y="323.5"/>
