@@ -10,10 +10,9 @@
 
 @interface YouTubeVideoModel : NSObject
 
-// download button
-//name of the song
-// id of the song
-// length of the song
-//thumbnail (optional)
+@property (strong, nonatomic) NSString* vTitle;
+@property (strong, nonatomic) NSString* vId;
+@property (strong, nonatomic) NSString* vLength;
+@property (strong, nonatomic) NSString* vThumbnailURL;
 
 @end

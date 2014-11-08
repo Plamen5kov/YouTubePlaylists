@@ -7,13 +7,15 @@
 //
 
 #import "DetailedPlaylistViewController.h"
+#import "YouTubeVideoModel.h"
 
-@interface DetailedPlaylistViewController ()
+@interface DetailedPlaylistViewController ()<NSURLConnectionDataDelegate>
 
 @end
 
 @implementation DetailedPlaylistViewController{
     NSArray* arr;
+    NSMutableArray* videosInPlaylist;
 }
 
 static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
@@ -41,10 +43,57 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     self.playerView.delegate = self;
     
     [self.playerView loadWithPlaylistId:playlistId playerVars:playerVars];
-
+    
+    NSString *link = @"https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId=PL6rfhdR2eI_Mmc1sb4uFtWND_mm_-Na22";
+    
+    NSLog(@"%@", link);
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:link]];
+    
+     NSString *authToken = @"Bearer ya29.uAD3ajMa86NPEAmS_Ghf0dStXzeTXZQ0CfkBlZaEU7U0apDx6uGRWN1KCRwVMx11CXT9C9gTurIyfw";
+    [request setValue:authToken forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"GET"];
+    
+    [NSURLConnection connectionWithRequest:request delegate:self];
     
     [self.tableView reloadData];
 }
+
+-(void)connection:(NSURLRequest *) request didReceiveData:(NSData *)data{
+    
+    NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSUTF8StringEncoding error: nil];
+    NSLog(@"%@", jsonDict);
+    NSArray* vTitles = [jsonDict  valueForKeyPath:@"items.snippet.title"];
+    NSArray* vIds = [jsonDict  valueForKeyPath:@"items.contentDetails.videoId"];
+    NSArray* vThumbnailURLs = [jsonDict  valueForKeyPath:@"items.snippet.thumbnails.default.url"];
+    
+    NSLog(@"%@", vTitles);
+    NSLog(@"%@", vIds);
+    NSLog(@"%@", vThumbnailURLs);
+    
+    videosInPlaylist = [[NSMutableArray alloc]init];
+    
+    for (int i=0; i< vTitles.count; i++) {
+        YouTubeVideoModel *video = [[YouTubeVideoModel alloc]init];
+        
+        video.vTitle = [vTitles objectAtIndex:i];
+        video.vId = [vIds objectAtIndex:i];
+        video.vThumbnailURL = [vThumbnailURLs objectAtIndex:i];
+        
+//        NSLog(@"%@", video.videoTitle);
+//        NSLog(@"%@", video.videoId);
+//        NSLog(@"%@", video.thumbnailURL);
+        
+        [videosInPlaylist addObject:video];
+    }
+
+    [self.tableView reloadData];
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    NSLog(@"RECIEVED ERROR IS: %@", error);
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -58,7 +107,8 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return arr.count;
+    //return arr.count;
+    return videosInPlaylist.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,11 +116,17 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     VideoDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell = [[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] objectAtIndex: 0];
     NSLog(@"#");
+    NSLog(@"%@", [videosInPlaylist[indexPath.row] vTitle]);
+   
+    //cell.videoTitle.text = [[videosInPlaylist objectAtIndex:indexPath.row] vTitle];
+    cell.videoTitle.text = [videosInPlaylist[indexPath.row] vTitle];
+    cell.videoTitle.numberOfLines = 2;
     
-    cell.videoLength.text = [arr objectAtIndex:indexPath.row];
-    //cell.thumbnailImageView.image = [UIImage imageNamed:@"download-mp3-button.jpg"];
+    NSString *imageUrl = [videosInPlaylist[indexPath.row] vThumbnailURL];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        cell.thumbnailImageView.image = [UIImage imageWithData:data];
+    }];
     
-    cell.videoTitle.text = @"Test";
     
     
     return cell;

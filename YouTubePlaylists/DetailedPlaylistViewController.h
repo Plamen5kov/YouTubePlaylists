@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VideoDetailsTableViewCell.h"
 #import "YTPlayerView.h"
+#import "YouTubeVideoModel.h"
 
 @interface DetailedPlaylistViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, YTPlayerViewDelegate>
 

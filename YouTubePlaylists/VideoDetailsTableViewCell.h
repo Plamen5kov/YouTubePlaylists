@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *videoTitle;
 @property (weak, nonatomic) IBOutlet UILabel *videoLength;
 @property (weak, nonatomic) IBOutlet UIButton *donloadToMP3Button;
+@property (strong, nonatomic) IBOutlet UILabel *videoId;
 
 - (IBAction)getMp3Button:(id)sender;
 
