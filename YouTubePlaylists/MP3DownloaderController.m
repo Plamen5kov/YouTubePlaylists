@@ -14,7 +14,7 @@
 @end
 
 @implementation MP3DownloaderController
-    NSString *apiURL = @"http://youtubeinmp3.com/fetch/?video=";
+    NSString *apiURL = @"http://youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=";
 
 -(instancetype)init{
     if(self = [super init])

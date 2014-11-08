@@ -29,14 +29,24 @@
 {
     return 78;
 }
+//
+//- (IBAction)getMp3Button:(id)sender {
+//    NSLog(@"%@", sender);
+//    
+//    MP3DownloaderController *downloader = [[MP3DownloaderController alloc] init];
+//    [downloader getMP3File: @"https://www.youtube.com/watch?v=akhmS1D2Ce4"];
+//}
 
-- (IBAction)getMp3Button:(id)sender {
-    NSLog(@"%@", sender);
+-(void)getMp3Button:(id)sender{
+    UIView *parent = [sender superview];
+    while (parent && ![parent isKindOfClass:[VideoDetailsTableViewCell class]]) {
+        parent = parent.superview;
+    }
     
+    VideoDetailsTableViewCell *cell = (VideoDetailsTableViewCell *)parent;
     MP3DownloaderController *downloader = [[MP3DownloaderController alloc] init];
-    [downloader getMP3File: @"https://www.youtube.com/watch?v=akhmS1D2Ce4"];
+    NSLog(@"%@", cell.videoId.text);
+    [downloader getMP3File: cell.videoId.text];
 }
-
-
 
 @end

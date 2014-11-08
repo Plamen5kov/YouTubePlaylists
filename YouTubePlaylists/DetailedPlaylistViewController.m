@@ -31,7 +31,7 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     UINib* nib = [UINib nibWithNibName:cellIdentifier bundle:nil]; // take the nib
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier]; // register the nib so we can reuse it (tell the table view ... you are gong to use this cell when someone dequeues)
     
-    NSString* playlistId = @"PLhBgTdAWkxeCMHYCQ0uuLyhydRJGDRNo5";
+    NSString* playlistId = @"PL6rfhdR2eI_MfMTowRqaFlxZbTtU2iac4";
     
     // For a full list of player parameters, see the documentation for the HTML5 player
     // at: https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
@@ -46,13 +46,13 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     
     [self.playerView loadWithPlaylistId:playlistId playerVars:playerVars];
     
-    NSString *link = @"https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId=PL6rfhdR2eI_Mmc1sb4uFtWND_mm_-Na22";
+    NSString *link = @"https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId=PL6rfhdR2eI_MfMTowRqaFlxZbTtU2iac4";
     
     NSLog(@"%@", link);
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:link]];
     
-     NSString *authToken = @"Bearer ya29.uADNKd4Ek_T7Qla0g0I2ucDqUd4U0hwNt5cUQ9tIvYfVkucgjKuTWN_kypZzOxuDYKbernN5k67Z0g";
+     NSString *authToken = @"Bearer ya29.uADszfFBGjIMP-_-YoSqrfPZvVOgassQkCRQ4sFdPRVSVVl7CDKXvhL9qtlMVPCOMkTlHiDUv1LDZw";
     [request setValue:authToken forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     
