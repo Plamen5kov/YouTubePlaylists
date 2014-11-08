@@ -18,6 +18,9 @@
 		847831191A0D5C11007FAFD4 /* chill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 847831181A0D5C11007FAFD4 /* chill.mp3 */; };
 		8478311C1A0D5CAA007FAFD4 /* BackgroundMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */; };
 		84888FEE1A0A179600714EF3 /* YouTubeSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */; };
+		8496419C1A0E18F1005F5F77 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8496419B1A0E18F1005F5F77 /* CoreDataHelper.m */; };
+		849641A81A0E290F005F5F77 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 849641A61A0E290F005F5F77 /* DataModel.xcdatamodeld */; };
+		849641AB1A0E292E005F5F77 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 849641AA1A0E292E005F5F77 /* Song.m */; };
 		849EF2351A00E2CB00E8DF08 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2341A00E2CB00E8DF08 /* main.m */; };
 		849EF2381A00E2CB00E8DF08 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2371A00E2CB00E8DF08 /* AppDelegate.m */; };
 		849EF23B1A00E2CB00E8DF08 /* YouTubePlaylists.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2391A00E2CB00E8DF08 /* YouTubePlaylists.xcdatamodeld */; };
@@ -66,6 +69,11 @@
 		8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundMusicController.m; sourceTree = "<group>"; };
 		84888FEB1A0A179600714EF3 /* YouTubeSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeSignInViewController.h; sourceTree = "<group>"; };
 		84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeSignInViewController.m; sourceTree = "<group>"; };
+		8496419A1A0E18F1005F5F77 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		8496419B1A0E18F1005F5F77 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		849641A71A0E290F005F5F77 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		849641A91A0E292E005F5F77 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		849641AA1A0E292E005F5F77 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		849EF22F1A00E2CB00E8DF08 /* YouTubePlaylists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlaylists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849EF2331A00E2CB00E8DF08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		849EF2341A00E2CB00E8DF08 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -136,6 +144,9 @@
 				840A27F51A04FA2500C678DF /* YouTubePlaylistModel.m */,
 				840A27F71A04FA7800C678DF /* YouTubeVideoModel.h */,
 				840A27F81A04FA7800C678DF /* YouTubeVideoModel.m */,
+				849641A61A0E290F005F5F77 /* DataModel.xcdatamodeld */,
+				849641A91A0E292E005F5F77 /* Song.h */,
+				849641AA1A0E292E005F5F77 /* Song.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -163,6 +174,7 @@
 		840A27BB1A04D8F000C678DF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				849641991A0E189E005F5F77 /* UnitOfWork */,
 				840A27FA1A04FAAF00C678DF /* HttpPersister.h */,
 				840A27FB1A04FAAF00C678DF /* HttpPersister.m */,
 			);
@@ -220,6 +232,15 @@
 				8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		849641991A0E189E005F5F77 /* UnitOfWork */ = {
+			isa = PBXGroup;
+			children = (
+				8496419A1A0E18F1005F5F77 /* CoreDataHelper.h */,
+				8496419B1A0E18F1005F5F77 /* CoreDataHelper.m */,
+			);
+			name = UnitOfWork;
 			sourceTree = "<group>";
 		};
 		849EF2261A00E2CB00E8DF08 = {
@@ -446,13 +467,16 @@
 				840A27F91A04FA7800C678DF /* YouTubeVideoModel.m in Sources */,
 				84D42A001A0A28F500C0F7CC /* VideoDetailsTableViewCell.m in Sources */,
 				840A27F61A04FA2500C678DF /* YouTubePlaylistModel.m in Sources */,
+				849641A81A0E290F005F5F77 /* DataModel.xcdatamodeld in Sources */,
 				849EF2381A00E2CB00E8DF08 /* AppDelegate.m in Sources */,
+				849641AB1A0E292E005F5F77 /* Song.m in Sources */,
 				8478311C1A0D5CAA007FAFD4 /* BackgroundMusicController.m in Sources */,
 				8451FBFE1A0CEFEC001BF49A /* YTPlayerView.m in Sources */,
 				84888FEE1A0A179600714EF3 /* YouTubeSignInViewController.m in Sources */,
 				849EF2351A00E2CB00E8DF08 /* main.m in Sources */,
 				849EF26B1A04E4DE00E8DF08 /* GoogleRegisteredUserModel.m in Sources */,
 				849EF23E1A00E2CB00E8DF08 /* InitialPlaylistViewController.m in Sources */,
+				8496419C1A0E18F1005F5F77 /* CoreDataHelper.m in Sources */,
 				840A27FC1A04FAAF00C678DF /* HttpPersister.m in Sources */,
 				849EF2681A0246FA00E8DF08 /* MP3DownloaderController.m in Sources */,
 				849EF23B1A00E2CB00E8DF08 /* YouTubePlaylists.xcdatamodeld in Sources */,
@@ -675,6 +699,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		849641A61A0E290F005F5F77 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				849641A71A0E290F005F5F77 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 849641A71A0E290F005F5F77 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		849EF2391A00E2CB00E8DF08 /* YouTubePlaylists.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

@@ -12,11 +12,14 @@
 #import "YouTubePlaylistModel.h"
 #import "BackgroundMusicController.h"
 #import <CoreMotion/CoreMotion.h>
+#import "CoreDataHelper.h"
+#import "Song.h"
 
 @interface InitialPlaylistViewController ()<NSURLConnectionDataDelegate>
 @property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *longPressGesture;
 @property(nonatomic, strong) AVAudioPlayer *backgroundMusic;
 @property (strong, nonatomic) CMMotionManager *motionManager;
+@property(nonatomic, strong) CoreDataHelper* helper;
 @end
 
 @implementation InitialPlaylistViewController{
@@ -31,11 +34,34 @@
     [super viewDidLoad];
     cellSelector = @"PlaylistCell";
     
+    
     [self loadSpinner];
     [self appendLongPressGesture];
     [self playMusicInBackground];
 //    [self setUpMotionManager];
     
+    self.helper = [[CoreDataHelper alloc] init];
+    [self.helper setupCoreData];
+    
+//    [self addDataToCoreData];
+    [self loadData];
+    
+}
+
+-(void) loadData{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Song"];
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:[self.helper.context executeFetchRequest:request error:nil]];
+    Song* songObject = [arr objectAtIndex:0];
+    NSString* songName = songObject.backgroundMusic;
+    
+    NSLog(@"DATA: %@", songName);
+}
+
+-(void) addDataToCoreData{
+    Song *model= [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.helper.context];
+//    [model.backgroundSong setValue:@"asdasjdkgasodk" forKey:@"backgroundSong"];
+    model.backgroundMusic = @"aslduasda";
+    [self.helper saveContext];
 }
 
 #pragma mark core motion
