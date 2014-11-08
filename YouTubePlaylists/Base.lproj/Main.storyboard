@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1671" y="168"/>
+            <point key="canvasLocation" x="1591" y="-156"/>
         </scene>
         <!--You Tube Sign In View Controller-->
         <scene sceneID="Kyp-e0-0fo">

@@ -239,6 +239,7 @@
 
 -(void) loadDataWithUser: (GoogleRegisteredUserModel *) authenticatedUser{
     
+    user = authenticatedUser;
     
     NSString* url = @"https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&key=902472583724-ul05lna38kfh37v8mp18bli09s0b84ti.apps.googleusercontent.com";
 
@@ -253,6 +254,8 @@
     [request setHTTPMethod:@"GET"];
     
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    
 }
 
 #pragma mark - NSURLConnectionDataDelegate protocol

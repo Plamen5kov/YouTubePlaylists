@@ -8,7 +8,7 @@
 
 #import "YouTubeSignInViewController.h"
 #import "InitialPlaylistViewController.h"
-#import "GoogleRegisteredUserModel.h"
+
 
 NSString *client_id = @"902472583724-ul05lna38kfh37v8mp18bli09s0b84ti.apps.googleusercontent.com";
 NSString *secret = @"LYJ4H6xFFdGGhlHswxhAGJXC";

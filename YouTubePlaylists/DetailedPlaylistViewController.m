@@ -8,6 +8,7 @@
 
 #import "DetailedPlaylistViewController.h"
 #import "YouTubeVideoModel.h"
+#import "GoogleRegisteredUserModel.h"
 
 @interface DetailedPlaylistViewController ()<NSURLConnectionDelegate>
     @property (strong, nonatomic) NSMutableData* receivedData;
@@ -30,8 +31,14 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     //register the cell we are going to reload
     UINib* nib = [UINib nibWithNibName:cellIdentifier bundle:nil]; // take the nib
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier]; // register the nib so we can reuse it (tell the table view ... you are gong to use this cell when someone dequeues)
+
+    [self loadDataWithUser:nil andPlaylistId:@"PL6rfhdR2eI_MfMTowRqaFlxZbTtU2iac4"];
     
-    NSString* playlistId = @"PL6rfhdR2eI_MfMTowRqaFlxZbTtU2iac4";
+    [self.tableView reloadData];
+}
+
+-(void)loadDataWithUser: (GoogleRegisteredUserModel *) authenticatedUser andPlaylistId:(NSString *)playlistId{
+    //NSString* playlist = @"PL6rfhdR2eI_MfMTowRqaFlxZbTtU2iac4";
     
     // For a full list of player parameters, see the documentation for the HTML5 player
     // at: https://developers.google.com/youtube/player_parameters?playerVersion=HTML5
@@ -52,15 +59,14 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:link]];
     
-     NSString *authToken = @"Bearer ya29.uADszfFBGjIMP-_-YoSqrfPZvVOgassQkCRQ4sFdPRVSVVl7CDKXvhL9qtlMVPCOMkTlHiDUv1LDZw";
+    NSString *authToken = @"Bearer ya29.uADszfFBGjIMP-_-YoSqrfPZvVOgassQkCRQ4sFdPRVSVVl7CDKXvhL9qtlMVPCOMkTlHiDUv1LDZw";
     [request setValue:authToken forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     
     self.conn = [NSURLConnection connectionWithRequest:request delegate:self];
     self.receivedData = [[NSMutableData alloc] init];
     self.receivedData = [NSMutableData dataWithCapacity: 0];
-    
-    [self.tableView reloadData];
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
