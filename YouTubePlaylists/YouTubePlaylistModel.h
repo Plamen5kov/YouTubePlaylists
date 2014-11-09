@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString* playlistTitle;
 @property (strong, nonatomic) NSString* playlistId;
+@property (strong, nonatomic) NSString* authTokenCurrent;
 
 -(instancetype) initWithData: (NSData*) data;
 

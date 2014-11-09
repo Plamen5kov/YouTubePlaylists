@@ -15,6 +15,7 @@
 #import "CoreDataHelper.h"
 #import "Song.h"
 #import "AppDelegate.h"
+#import "DetailedPlaylistViewController.h"
 
 @interface InitialPlaylistViewController ()<NSURLConnectionDataDelegate>
 @property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *longPressGesture;
@@ -25,7 +26,7 @@
 
 @implementation InitialPlaylistViewController{
     NSString* cellSelector;
-    NSMutableArray* playListNames;
+    NSMutableArray* playList;
     GoogleRegisteredUserModel* user;
     UIActivityIndicatorView *spinner;
     AppDelegate* appDel;
@@ -169,7 +170,7 @@
             if (indexPath && ![indexPath isEqual:sourceIndexPath]) {
                 
                 // ... update data source.
-                [playListNames exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
+                [playList exchangeObjectAtIndex:indexPath.row withObjectAtIndex:sourceIndexPath.row];
                 
                 // ... move the rows.
                 [self.subTableView moveRowAtIndexPath:sourceIndexPath toIndexPath:indexPath];
@@ -256,7 +257,7 @@
     //    NSDictionary* playlistJsonObjects = [[[jsonDict objectForKey:@"items"] valueForKey:@"snippet"] valueForKey:@"title"];
     NSDictionary* playlistJsonObjects = [jsonDict objectForKey:@"items"];
     
-    playListNames = [[NSMutableArray alloc] init];
+    playList = [[NSMutableArray alloc] init];
     for (NSString *playlistItem in playlistJsonObjects) {
         
         NSString* currentTitle = [[playlistItem valueForKey:@"snippet"] valueForKey:@"title"];
@@ -265,8 +266,9 @@
         YouTubePlaylistModel *list = [[YouTubePlaylistModel alloc] init];
         list.playlistTitle = currentTitle;
         list.playlistId = currentId;
+        list.authTokenCurrent = user.accessToken;
         
-        [playListNames addObject:list];
+        [playList addObject:list];
     }
     
     [spinner stopAnimating];
@@ -285,7 +287,7 @@
 #pragma mark - Table view data source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return playListNames.count;
+    return playList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -296,7 +298,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellSelector];
     }
     
-    cell.textLabel.text = [playListNames[indexPath.row] playlistTitle];
+    cell.textLabel.text = [playList[indexPath.row] playlistTitle];
     //may add more properties from YoutubePlaylistModel
     
     return cell;
@@ -311,8 +313,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [playListNames removeObjectAtIndex:indexPath.row];
+    [playList removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+#pragma mark Segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"detailsSegue"]){
+        YouTubePlaylistModel* currentPlaylistInfo = [playList objectAtIndex:[[sender indexPath] row]];
+        DetailedPlaylistViewController* detailsController = [segue destinationViewController];
+        detailsController.playlistInfo = currentPlaylistInfo;
+    }
 }
 
 @end

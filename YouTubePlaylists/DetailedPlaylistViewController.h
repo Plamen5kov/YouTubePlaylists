@@ -11,12 +11,13 @@
 #import "YTPlayerView.h"
 #import "YouTubeVideoModel.h"
 #import "GoogleRegisteredUserModel.h"
+#import "YouTubePlaylistModel.h"
 
 @interface DetailedPlaylistViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, YTPlayerViewDelegate>
 
 @property (strong, nonatomic) IBOutlet YTPlayerView *playerView;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) YouTubePlaylistModel* playlistInfo;
 
 -(void) loadDataWithUser: (GoogleRegisteredUserModel *) authenticatedUser andPlaylistId: (NSString *) playlistId;
 
