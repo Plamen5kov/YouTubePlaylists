@@ -28,9 +28,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x82-eg-cZN" id="kPC-Ts-Yhb">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="DN6-OH-MuM" kind="show" identifier="detailsSegue" id="ZRZ-Y2-uxN"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -103,7 +100,7 @@
         <!--Detailed Playlist View Controller-->
         <scene sceneID="yL8-Qe-k9w">
             <objects>
-                <viewController id="X8t-ki-Y4d" customClass="DetailedPlaylistViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailsController" id="X8t-ki-Y4d" customClass="DetailedPlaylistViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mjt-Nx-DOi"/>
                         <viewControllerLayoutGuide type="bottom" id="xLl-Jq-UGP"/>
@@ -153,7 +150,7 @@
         <!--Navigation Controller-->
         <scene sceneID="f4f-KX-agf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DN6-OH-MuM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="detailsNavController" automaticallyAdjustsScrollViewInsets="NO" id="DN6-OH-MuM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AbF-gv-Gco">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

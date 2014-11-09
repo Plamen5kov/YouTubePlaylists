@@ -30,6 +30,7 @@
     GoogleRegisteredUserModel* user;
     UIActivityIndicatorView *spinner;
     AppDelegate* appDel;
+    NSString* authenticationToken;
 //    BackgroundMusicController* audioController;
     NSMutableData *receivedData;
 }
@@ -230,7 +231,7 @@
 
 -(void) loadDataWithUser: (GoogleRegisteredUserModel *) authenticatedUser{
     
-    user = authenticatedUser;
+    authenticationToken = authenticatedUser.accessToken;
     
     NSString* url = @"https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&key=902472583724-ul05lna38kfh37v8mp18bli09s0b84ti.apps.googleusercontent.com";
 
@@ -266,7 +267,7 @@
         YouTubePlaylistModel *list = [[YouTubePlaylistModel alloc] init];
         list.playlistTitle = currentTitle;
         list.playlistId = currentId;
-        list.authTokenCurrent = user.accessToken;
+        list.authTokenCurrent = authenticationToken;
         
         [playList addObject:list];
     }
@@ -285,6 +286,24 @@
 }
 
 #pragma mark - Table view data source
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //take detailsController from storyboard
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:
+                                @"Main" bundle:[NSBundle mainBundle]];
+    DetailedPlaylistViewController* detailsController = [storyboard instantiateViewControllerWithIdentifier:@"detailsController"];
+    
+    //push property
+    YouTubePlaylistModel* currentPlaylistInfo = [playList objectAtIndex: indexPath.row];
+    detailsController.playlistInfo = currentPlaylistInfo;
+    
+    //take navigation controller from story board
+    UINavigationController* detailsNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"detailsNavController"];
+    
+    //push details controller in navigation controller
+    [detailsNavigationController pushViewController:detailsController animated:YES];
+    [self presentViewController:detailsNavigationController animated:YES completion:nil];
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return playList.count;
