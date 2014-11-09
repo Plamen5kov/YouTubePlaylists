@@ -11,6 +11,7 @@
 @interface YouTubePlaylistModel : NSObject
 
 @property (strong, nonatomic) NSString* playlistTitle;
+@property (strong, nonatomic) NSString* playlistId;
 
 -(instancetype) initWithData: (NSData*) data;
 

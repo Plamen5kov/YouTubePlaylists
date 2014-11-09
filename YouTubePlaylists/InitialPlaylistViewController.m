@@ -205,21 +205,6 @@
 }
 
 #pragma mark - Helper methods
-//
-//-(void) playMusicInBackground{
-//    if([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)])
-//    {
-//        audioController = [[BackgroundMusicController alloc] init];
-//        _backgroundMusic = audioController.backgroundMusic;
-//        
-//        dispatch_queue_t queue = dispatch_queue_create("com.yourdomain.yourappname", NULL);
-//        dispatch_async(queue, ^{
-//            _backgroundMusic.volume = 0.7;
-//            [_backgroundMusic play];
-//            audioController.isPlaying = YES;
-//        });
-//    }
-//}
 
 -(void) loadSpinner {
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -257,8 +242,6 @@
     [request setHTTPMethod:@"GET"];
     
     [NSURLConnection connectionWithRequest:request delegate:self];
-    
-    
 }
 
 #pragma mark - NSURLConnectionDataDelegate protocol
@@ -266,13 +249,18 @@
 -(void)connection:(NSURLRequest *) request didReceiveData:(NSData *)data{
 
     NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSUTF8StringEncoding error: nil];
-    NSDictionary* playlistJsonObjects = [[[jsonDict objectForKey:@"items"] valueForKey:@"snippet"] valueForKey:@"title"];
+//    NSDictionary* playlistJsonObjects = [[[jsonDict objectForKey:@"items"] valueForKey:@"snippet"] valueForKey:@"title"];
+    NSDictionary* playlistJsonObjects = [jsonDict objectForKey:@"items"];
     
     playListNames = [[NSMutableArray alloc] init];
     for (NSString *playlistItem in playlistJsonObjects) {
         
+        NSString* currentTitle = [[playlistItem valueForKey:@"snippet"] valueForKey:@"title"];
+        NSString* currentId = [playlistItem valueForKey:@"id"];
+        
         YouTubePlaylistModel *list = [[YouTubePlaylistModel alloc] init];
-        list.playlistTitle = playlistItem;
+        list.playlistTitle = currentTitle;
+        list.playlistId = currentId;
         
         [playListNames addObject:list];
     }
