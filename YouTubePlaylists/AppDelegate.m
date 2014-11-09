@@ -14,6 +14,10 @@
 @end
 
 @implementation AppDelegate
+//{
+//
+//    BackgroundMusicController* audioController;
+//}
 
 @synthesize navigation;
 
@@ -27,8 +31,37 @@
 //    self.window.rootViewController = self.navigation;
 //    [self.window makeKeyAndVisible];
     application.applicationSupportsShakeToEdit = YES;
+    [self playMusicInBackground];
     
     return YES;
+}
+
+//-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+//{
+//    if(motion == UIEventSubtypeMotionShake)
+//    {
+//        if(audioController.isPlaying == YES){
+//            [_backgroundMusic stop];
+//        } else{
+//            [_backgroundMusic play];
+//        }
+//        audioController.isPlaying = !audioController.isPlaying;
+//    }
+//}
+
+-(void) playMusicInBackground{
+    if([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)])
+    {
+        self.audioController = [[BackgroundMusicController alloc] init];
+        _backgroundMusic = self.audioController.backgroundMusic;
+        
+        dispatch_queue_t queue = dispatch_queue_create("background.music.task", NULL);
+        dispatch_async(queue, ^{
+            _backgroundMusic.volume = 0.7;
+            [_backgroundMusic play];
+            self.audioController.isPlaying = YES;
+        });
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

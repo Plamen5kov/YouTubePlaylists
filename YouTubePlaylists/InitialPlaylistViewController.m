@@ -14,10 +14,11 @@
 #import <CoreMotion/CoreMotion.h>
 #import "CoreDataHelper.h"
 #import "Song.h"
+#import "AppDelegate.h"
 
 @interface InitialPlaylistViewController ()<NSURLConnectionDataDelegate>
 @property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *longPressGesture;
-@property(nonatomic, strong) AVAudioPlayer *backgroundMusic;
+//@property(nonatomic, strong) AVAudioPlayer *backgroundMusic;
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property(nonatomic, strong) CoreDataHelper* helper;
 @end
@@ -27,24 +28,26 @@
     NSMutableArray* playListNames;
     GoogleRegisteredUserModel* user;
     UIActivityIndicatorView *spinner;
-    BackgroundMusicController* audioController;
+    AppDelegate* appDel;
+//    BackgroundMusicController* audioController;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     cellSelector = @"PlaylistCell";
     
+    appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     [self loadSpinner];
     [self appendLongPressGesture];
-    [self playMusicInBackground];
+    [appDel.backgroundMusic play];
 //    [self setUpMotionManager];
     
     self.helper = [[CoreDataHelper alloc] init];
     [self.helper setupCoreData];
-    
+//    AppDelegate* b = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //    [self addDataToCoreData];
-    [self loadData];
+//    [self loadData];
     
 }
 
@@ -70,12 +73,12 @@
 {
     if(motion == UIEventSubtypeMotionShake)
     {
-        if(audioController.isPlaying == YES){
-            [_backgroundMusic stop];
+        if(appDel.audioController.isPlaying == YES){
+            [appDel.backgroundMusic stop];
         } else{
-            [_backgroundMusic play];
+            [appDel.backgroundMusic play];
         }
-        audioController.isPlaying = !audioController.isPlaying;
+        appDel.audioController.isPlaying = !appDel.audioController.isPlaying;
     }
 }
 
@@ -202,21 +205,21 @@
 }
 
 #pragma mark - Helper methods
-
--(void) playMusicInBackground{
-    if([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)])
-    {
-        audioController = [[BackgroundMusicController alloc] init];
-        _backgroundMusic = audioController.backgroundMusic;
-        
-        dispatch_queue_t queue = dispatch_queue_create("com.yourdomain.yourappname", NULL);
-        dispatch_async(queue, ^{
-            _backgroundMusic.volume = 0.7;
-            [_backgroundMusic play];
-            audioController.isPlaying = YES;
-        });
-    }
-}
+//
+//-(void) playMusicInBackground{
+//    if([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)])
+//    {
+//        audioController = [[BackgroundMusicController alloc] init];
+//        _backgroundMusic = audioController.backgroundMusic;
+//        
+//        dispatch_queue_t queue = dispatch_queue_create("com.yourdomain.yourappname", NULL);
+//        dispatch_async(queue, ^{
+//            _backgroundMusic.volume = 0.7;
+//            [_backgroundMusic play];
+//            audioController.isPlaying = YES;
+//        });
+//    }
+//}
 
 -(void) loadSpinner {
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

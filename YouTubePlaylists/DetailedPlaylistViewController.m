@@ -9,6 +9,7 @@
 #import "DetailedPlaylistViewController.h"
 #import "YouTubeVideoModel.h"
 #import "GoogleRegisteredUserModel.h"
+#import "AppDelegate.h"
 
 @interface DetailedPlaylistViewController ()<NSURLConnectionDelegate>
     @property (strong, nonatomic) NSMutableData* receivedData;
@@ -18,6 +19,7 @@
 @implementation DetailedPlaylistViewController{
     NSArray* arr;
     NSMutableArray* videosInPlaylist;
+    AppDelegate* appDel;
 }
 
 static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
@@ -25,6 +27,7 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     //arr = @[@"first video", @"second video", @"third video"];
     
@@ -192,6 +195,21 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     VideoDetailsTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"%@",cell.videoId.text);
     [self.playerView loadWithVideoId:cell.videoId.text];
+}
+
+#pragma mark Helper methods
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if(motion == UIEventSubtypeMotionShake)
+    {
+        if(appDel.audioController.isPlaying == YES){
+            [appDel.backgroundMusic stop];
+        } else{
+            [appDel.backgroundMusic play];
+        }
+        appDel.audioController.isPlaying = !appDel.audioController.isPlaying;
+    }
 }
 
 @end
