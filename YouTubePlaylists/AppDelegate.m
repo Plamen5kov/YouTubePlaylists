@@ -23,31 +23,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    YouTubeSignInViewController * controller = [[YouTubeSignInViewController alloc]initWithNibName:@"YouTubeSignInViewController" bundle:nil];
-//    
-//    self.navigation = [[UINavigationController alloc]initWithRootViewController:controller];
-//    self.window.rootViewController = self.navigation;
-//    [self.window makeKeyAndVisible];
     application.applicationSupportsShakeToEdit = YES;
     [self playMusicInBackground];
     
     return YES;
 }
-
-//-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-//{
-//    if(motion == UIEventSubtypeMotionShake)
-//    {
-//        if(audioController.isPlaying == YES){
-//            [_backgroundMusic stop];
-//        } else{
-//            [_backgroundMusic play];
-//        }
-//        audioController.isPlaying = !audioController.isPlaying;
-//    }
-//}
 
 -(void) playMusicInBackground{
     if([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)])

@@ -34,13 +34,17 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     //register the cell we are going to reload
     UINib* nib = [UINib nibWithNibName:cellIdentifier bundle:nil]; // take the nib
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier]; // register the nib so we can reuse it (tell the table view ... you are gong to use this cell when someone dequeues)
-
-    [self loadDataWithUser:nil andPlaylistId:@"PL6rfhdR2eI_MfMTowRqaFlxZbTtU2iac4"];
+    
+    NSMutableString* authToken = [NSMutableString stringWithString:@"Bearer "];
+    [authToken appendString: self.playlistInfo.authTokenCurrent];
+    NSString *playlitId = self.playlistInfo.playlistId;
+    
+    [self loadDataWithUser:authToken andPlaylistId:playlitId];
     
     [self.tableView reloadData];
 }
 
--(void)loadDataWithUser: (GoogleRegisteredUserModel *) authenticatedUser andPlaylistId:(NSString *)playlistId{
+-(void)loadDataWithUser: (NSMutableString *) authToken andPlaylistId:(NSString *)playlistId{
     //NSString* playlist = @"PL6rfhdR2eI_MfMTowRqaFlxZbTtU2iac4";
     
     // For a full list of player parameters, see the documentation for the HTML5 player
@@ -56,13 +60,15 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     
     [self.playerView loadWithPlaylistId:playlistId playerVars:playerVars];
     
-    NSString *link = @"https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId=PL6rfhdR2eI_MfMTowRqaFlxZbTtU2iac4";
+    NSMutableString *link = [NSMutableString stringWithString:@"https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId="];
+    [link appendString:playlistId];
+
     
     NSLog(@"%@", link);
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:link]];
     
-    NSString *authToken = @"Bearer ya29.uQBf9gsjY2nAlfNMTVwUICXolgOzrmDOtwu4ZcsuIOddoWN37zbL3U1C1KeZUC0QnO-PgxnfzliwdA";
+    //NSString *authToken = @"Bearer ya29.uQBf9gsjY2nAlfNMTVwUICXolgOzrmDOtwu4ZcsuIOddoWN37zbL3U1C1KeZUC0QnO-PgxnfzliwdA";
     [request setValue:authToken forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     

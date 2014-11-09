@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="njo-tx-Zg5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DZp-d4-KS0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -135,7 +135,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w0w-Sg-CIq">
-                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="wji-e5-ADZ"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="wji-e5-ADZ">
+                            <connections>
+                                <segue destination="qN1-u7-wue" kind="unwind" unwindAction="rerutnToInitialViewController:" id="R3l-vS-k8a"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4vF-mT-UNV"/>
                     </navigationItem>
                     <connections>
@@ -144,6 +148,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvV-Fv-Hm8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qN1-u7-wue" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3190" y="152"/>
         </scene>
@@ -164,24 +169,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wf-l9-EK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2463" y="168"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dsP-tB-7Qq">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="njo-tx-Zg5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tdo-K0-gLh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="DZp-d4-KS0" kind="relationship" relationship="rootViewController" id="kI8-GL-6Rd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gbu-k1-T1V" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="31" y="168"/>
         </scene>
     </scenes>
 </document>

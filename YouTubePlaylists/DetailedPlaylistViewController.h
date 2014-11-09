@@ -19,6 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) YouTubePlaylistModel* playlistInfo;
 
--(void) loadDataWithUser: (GoogleRegisteredUserModel *) authenticatedUser andPlaylistId: (NSString *) playlistId;
+-(void) loadDataWithUser: (NSMutableString *) authenticatedUser andPlaylistId: (NSString *) playlistId;
 
 @end

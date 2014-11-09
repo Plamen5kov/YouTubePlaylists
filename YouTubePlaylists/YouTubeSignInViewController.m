@@ -84,7 +84,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                                 @"Main" bundle:[NSBundle mainBundle]];
     initialPlaylistViewController = [storyboard instantiateViewControllerWithIdentifier:@"InitialViewNib"];
     
-    [[self navigationController] pushViewController:initialPlaylistViewController animated:YES];
+    [self presentViewController:initialPlaylistViewController animated:YES completion:nil];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data

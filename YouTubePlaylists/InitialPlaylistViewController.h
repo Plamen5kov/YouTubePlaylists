@@ -16,4 +16,6 @@
 
 -(void) loadDataWithUser: (GoogleRegisteredUserModel *) authenticatedUser;
 
+-(IBAction) rerutnToInitialViewController :(UIStoryboardSegue *) segue;
+
 @end

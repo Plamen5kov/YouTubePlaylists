@@ -338,6 +338,11 @@
 
 #pragma mark Segue
 
+
+-(IBAction) rerutnToInitialViewController :(UIStoryboardSegue *) segue{
+    
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"detailsSegue"]){
         YouTubePlaylistModel* currentPlaylistInfo = [playList objectAtIndex:[[sender indexPath] row]];
