@@ -62,7 +62,7 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:link]];
     
-    NSString *authToken = @"Bearer ya29.uADszfFBGjIMP-_-YoSqrfPZvVOgassQkCRQ4sFdPRVSVVl7CDKXvhL9qtlMVPCOMkTlHiDUv1LDZw";
+    NSString *authToken = @"Bearer ya29.uQBf9gsjY2nAlfNMTVwUICXolgOzrmDOtwu4ZcsuIOddoWN37zbL3U1C1KeZUC0QnO-PgxnfzliwdA";
     [request setValue:authToken forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     

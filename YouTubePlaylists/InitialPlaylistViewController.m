@@ -30,11 +30,13 @@
     UIActivityIndicatorView *spinner;
     AppDelegate* appDel;
 //    BackgroundMusicController* audioController;
+    NSMutableData *receivedData;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     cellSelector = @"PlaylistCell";
+    receivedData = [[NSMutableData alloc]init];
     
     appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
@@ -43,8 +45,8 @@
     [appDel.backgroundMusic play];
 //    [self setUpMotionManager];
     
-    self.helper = [[CoreDataHelper alloc] init];
-    [self.helper setupCoreData];
+//    self.helper = [[CoreDataHelper alloc] init];
+//    [self.helper setupCoreData];
 //    AppDelegate* b = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //    [self addDataToCoreData];
 //    [self loadData];
@@ -245,11 +247,13 @@
 }
 
 #pragma mark - NSURLConnectionDataDelegate protocol
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    [receivedData appendData:data];
+}
 
--(void)connection:(NSURLRequest *) request didReceiveData:(NSData *)data{
-
-    NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSUTF8StringEncoding error: nil];
-//    NSDictionary* playlistJsonObjects = [[[jsonDict objectForKey:@"items"] valueForKey:@"snippet"] valueForKey:@"title"];
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:receivedData options:NSUTF8StringEncoding error: nil];
+    //    NSDictionary* playlistJsonObjects = [[[jsonDict objectForKey:@"items"] valueForKey:@"snippet"] valueForKey:@"title"];
     NSDictionary* playlistJsonObjects = [jsonDict objectForKey:@"items"];
     
     playListNames = [[NSMutableArray alloc] init];
@@ -267,7 +271,12 @@
     
     [spinner stopAnimating];
     [self.subTableView reloadData];
+
 }
+
+//-(void)connection:(NSURLRequest *) request didReceiveData:(NSData *)data{
+//
+//    }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     NSLog(@"RECIEVED ERROR IS: %@", error);
