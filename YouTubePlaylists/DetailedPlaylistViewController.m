@@ -60,7 +60,7 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     
     [self.playerView loadWithPlaylistId:playlistId playerVars:playerVars];
     
-    NSMutableString *link = [NSMutableString stringWithString:@"https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&playlistId="];
+    NSMutableString *link = [NSMutableString stringWithString:@"https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails%2Cstatus&maxResults=50&playlistId="];
     [link appendString:playlistId];
 
     
