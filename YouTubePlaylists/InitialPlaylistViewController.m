@@ -293,7 +293,6 @@
     }
     
     cell.textLabel.text = [playList[indexPath.row] playlistTitle];
-    //may add more properties from YoutubePlaylistModel
     
     return cell;
 }
