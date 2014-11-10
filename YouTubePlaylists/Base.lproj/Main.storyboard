@@ -156,7 +156,7 @@
         <!--Navigation Controller-->
         <scene sceneID="f4f-KX-agf">
             <objects>
-                <navigationController storyboardIdentifier="detailsNavController" automaticallyAdjustsScrollViewInsets="NO" id="DN6-OH-MuM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="detailsNavController" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" id="DN6-OH-MuM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AbF-gv-Gco">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
