@@ -8,6 +8,7 @@
 
 #import "YouTubeSignInViewController.h"
 #import "InitialPlaylistViewController.h"
+#import "Reachability.h"
 
 
 NSString *client_id = @"902472583724-ul05lna38kfh37v8mp18bli09s0b84ti.apps.googleusercontent.com";
@@ -22,6 +23,8 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 
 @implementation YouTubeSignInViewController{
     
+    Reachability *internetReachableFoo;
+    
     GoogleRegisteredUserModel *currentUser;
     InitialPlaylistViewController *initialPlaylistViewController;
 }
@@ -32,7 +35,41 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 {
     [super viewDidLoad];
     
+    [self testInternetConnection];
+    
     [self makeLogInRequest];
+    
+}
+
+- (void)testInternetConnection
+{
+    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSLog(@"Someone broke the internet :(");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"we need THE INTERNET"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        });
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 -(void) makeLogInRequest{

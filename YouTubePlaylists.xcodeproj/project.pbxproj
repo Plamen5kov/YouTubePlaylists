@@ -35,6 +35,7 @@
 		849EF2601A00F7A600E8DF08 /* libPods-YouTubePlaylists-gtm-oauth2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 849EF25F1A00F7A600E8DF08 /* libPods-YouTubePlaylists-gtm-oauth2.a */; };
 		849EF2681A0246FA00E8DF08 /* MP3DownloaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2671A0246FA00E8DF08 /* MP3DownloaderController.m */; };
 		849EF26B1A04E4DE00E8DF08 /* GoogleRegisteredUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EF26A1A04E4DE00E8DF08 /* GoogleRegisteredUserModel.m */; };
+		84A118611A11106800E75232 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A118601A11106800E75232 /* Reachability.m */; };
 		84D42A001A0A28F500C0F7CC /* VideoDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D429FE1A0A28F500C0F7CC /* VideoDetailsTableViewCell.m */; };
 		84D42A011A0A28F500C0F7CC /* VideoDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D429FF1A0A28F500C0F7CC /* VideoDetailsTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,8 @@
 		849EF2671A0246FA00E8DF08 /* MP3DownloaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MP3DownloaderController.m; sourceTree = "<group>"; };
 		849EF2691A04E4DE00E8DF08 /* GoogleRegisteredUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleRegisteredUserModel.h; sourceTree = "<group>"; };
 		849EF26A1A04E4DE00E8DF08 /* GoogleRegisteredUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleRegisteredUserModel.m; sourceTree = "<group>"; };
+		84A1185F1A11106800E75232 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		84A118601A11106800E75232 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		84D429FD1A0A28F500C0F7CC /* VideoDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDetailsTableViewCell.h; sourceTree = "<group>"; };
 		84D429FE1A0A28F500C0F7CC /* VideoDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDetailsTableViewCell.m; sourceTree = "<group>"; };
 		84D429FF1A0A28F500C0F7CC /* VideoDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoDetailsTableViewCell.xib; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 		84888FEA1A0A176D00714EF3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				84A1185F1A11106800E75232 /* Reachability.h */,
+				84A118601A11106800E75232 /* Reachability.m */,
 				849EF2661A0246FA00E8DF08 /* MP3DownloaderController.h */,
 				849EF2671A0246FA00E8DF08 /* MP3DownloaderController.m */,
 				8478311A1A0D5CAA007FAFD4 /* BackgroundMusicController.h */,
@@ -481,6 +486,7 @@
 				8478311C1A0D5CAA007FAFD4 /* BackgroundMusicController.m in Sources */,
 				8451FBFE1A0CEFEC001BF49A /* YTPlayerView.m in Sources */,
 				84888FEE1A0A179600714EF3 /* YouTubeSignInViewController.m in Sources */,
+				84A118611A11106800E75232 /* Reachability.m in Sources */,
 				849EF2351A00E2CB00E8DF08 /* main.m in Sources */,
 				849EF26B1A04E4DE00E8DF08 /* GoogleRegisteredUserModel.m in Sources */,
 				849EF23E1A00E2CB00E8DF08 /* InitialPlaylistViewController.m in Sources */,
