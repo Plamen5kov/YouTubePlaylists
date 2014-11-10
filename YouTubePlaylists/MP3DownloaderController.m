@@ -7,6 +7,7 @@
 //
 
 #import "MP3DownloaderController.h"
+#import <UIKit/UIKit.h>
 
 @interface MP3DownloaderController()<NSURLConnectionDelegate>
     @property (strong, nonatomic) NSMutableData* receivedData;
@@ -35,35 +36,22 @@
                                        timeoutInterval:60.0];
     
     self.conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//    
-//    if(self.conn) {
-//        NSLog(@"Connection Successful");
-//    } else {
-//        self.receivedData = nil;
-//        NSLog(@"Connection could not be made");
-//    }
+    
+    if(self.conn) {
+        NSLog(@"Connection Successful");
+    } else {
+        self.receivedData = nil;
+        NSLog(@"Connection could not be made");
+    }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    // This method is called when the server has determined that it
-    // has enough information to create the NSURLResponse object.
-    
-    // It can be called multiple times, for example in the case of a
-    // redirect, so each time we reset the data.
-    
-    // receivedData is an instance variable declared elsewhere.
+#pragma mark NSURLConnection
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     [self.receivedData setLength:0];
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    // Release the connection and the data object
-    // by setting the properties (declared elsewhere)
-    // to nil.  Note that a real-world app usually
-    // requires the delegate to manage more than one
-    // connection at a time, so these lines would
-    // typically be replaced by code to iterate through
-    // whatever data structures you are using.
     self.conn = nil;
     self.receivedData = nil;
     
@@ -75,20 +63,20 @@
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     [self.receivedData appendData:data];
+
+    //use notification bar
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    // do something with the data
-    // receivedData is declared as a property elsewhere
+    
+    //prepare to save
     NSLog(@"Succeeded! Received %d bytes of data",[self.receivedData length]);
     NSError *error = nil;
     NSDate *timestamp = [NSDate date];
-    
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *ytplDirPath = [documentsDirectory stringByAppendingPathComponent:@"YTPL"];
     
-    NSLog(@"%@", ytplDirPath);
-    
+    //if dir exists
     BOOL isDirExists = [self isDirectoryExists:ytplDirPath];
     NSLog(@"isDirExists: %hhd", isDirExists);
     
@@ -97,24 +85,23 @@
         [self createDirectory:ytplDirPath];
     }
     
-    NSString *fullPath = [ytplDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"song_%@.mp3", timestamp]]; //add our song
-    
+    //create file in path
+    NSString *fullPath = [ytplDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"song_%@.mp3", timestamp]]; // save song
     [self.receivedData writeToFile:fullPath options:NSDataWritingWithoutOverwriting error:&error];
     
     if (error) {
         NSLog(@"%@", error);
     }
     
-    // Release the connection and the data object
-    // by setting the properties (declared elsewhere)
-    // to nil.  Note that a real-world app usually
-    // requires the delegate to manage more than one
-    // connection at a time, so these lines would
-    // typically be replaced by code to iterate through
-    // whatever data structures you are using.
+    NSLog(@"%@", ytplDirPath); //where the song got saved (put in notification)
+   
+    [self scheduleNotificationWithDate:timestamp];
+    
     self.conn = nil;
     self.receivedData = nil;
 }
+
+#pragma mark Directory methods
 
 -(BOOL)isDirectoryExists: (NSString *)path {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -133,5 +120,19 @@
     
     NSAssert(success, @"Failed to create folder at path:%@", path);
 }
+
+#pragma mark Helper methods 
+
+- (void) scheduleNotificationWithDate: (NSDate*) date{
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    //    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:3];
+    localNotification.fireDate = date;//[NSDate dateWithTimeIntervalSinceNow:3];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.alertBody = @"Downloaded song successfuly";
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
 
 @end

@@ -26,6 +26,15 @@
     application.applicationSupportsShakeToEdit = YES;
     [self playMusicInBackground];
     
+    //accept notifications
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:
+                                                       UIUserNotificationTypeAlert|
+                                                       UIUserNotificationTypeBadge|
+                                                       UIUserNotificationTypeSound
+                                                                                        categories:nil]];
+    }
+    
     return YES;
 }
 
