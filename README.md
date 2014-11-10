@@ -1,8 +1,7 @@
 YouTubePlaylists
 ================
-Optimized youtube playlist app
+Optimized youtube playlist app for test purposes only
 
 ===============
 Team: 
-Plamen Petkov\n
-Diana Stancheva
+Plamen Petkov and Diana Stancheva
