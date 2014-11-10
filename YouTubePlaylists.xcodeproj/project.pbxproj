@@ -166,11 +166,13 @@
 		840A27B91A04D89B00C678DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				84888FEA1A0A176D00714EF3 /* Helpers */,
+				84888FEB1A0A179600714EF3 /* YouTubeSignInViewController.h */,
+				84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */,
 				849EF23C1A00E2CB00E8DF08 /* InitialPlaylistViewController.h */,
 				849EF23D1A00E2CB00E8DF08 /* InitialPlaylistViewController.m */,
 				840A27F11A04F7B100C678DF /* DetailedPlaylistViewController.h */,
 				840A27F21A04F7B100C678DF /* DetailedPlaylistViewController.m */,
+				84888FEA1A0A176D00714EF3 /* Helpers */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -230,8 +232,6 @@
 			children = (
 				849EF2661A0246FA00E8DF08 /* MP3DownloaderController.h */,
 				849EF2671A0246FA00E8DF08 /* MP3DownloaderController.m */,
-				84888FEB1A0A179600714EF3 /* YouTubeSignInViewController.h */,
-				84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */,
 				8478311A1A0D5CAA007FAFD4 /* BackgroundMusicController.h */,
 				8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */,
 			);

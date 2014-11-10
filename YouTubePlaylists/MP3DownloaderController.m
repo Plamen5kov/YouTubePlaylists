@@ -56,6 +56,9 @@
     self.receivedData = nil;
     
     // inform the user
+    
+    [self scheduleNotificationWithDate:[NSDate date] andMessage:@"Connection failed! Servers are too busy ... sorry"];
+    
     NSLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
@@ -91,11 +94,13 @@
     
     if (error) {
         NSLog(@"%@", error);
+        
+        [self scheduleNotificationWithDate:timestamp andMessage:@"Failed downloading song. We're sory"];
     }
     
     NSLog(@"%@", ytplDirPath); //where the song got saved (put in notification)
    
-    [self scheduleNotificationWithDate:timestamp];
+    [self scheduleNotificationWithDate:timestamp andMessage:@"Downloaded song successfuly!"];
     
     self.conn = nil;
     self.receivedData = nil;
@@ -123,12 +128,13 @@
 
 #pragma mark Helper methods 
 
-- (void) scheduleNotificationWithDate: (NSDate*) date{
+- (void) scheduleNotificationWithDate: (NSDate*) date
+                           andMessage: (NSString *) message{
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     //    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:3];
     localNotification.fireDate = date;//[NSDate dateWithTimeIntervalSinceNow:3];
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.alertBody = @"Downloaded song successfuly";
+    localNotification.alertBody = message;
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     localNotification.applicationIconBadgeNumber = 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
