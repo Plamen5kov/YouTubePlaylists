@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Admin. All rights reserved.
 //
 
-#import "Song.h"
+#import "CoreDataContainer.h"
 
 
-@implementation Song
+@implementation CoreDataContainer
 
-@dynamic backgroundMusic;
+@dynamic ytPlaylistId;
 
 @end

@@ -20,7 +20,8 @@
 		84888FEE1A0A179600714EF3 /* YouTubeSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */; };
 		8496419C1A0E18F1005F5F77 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8496419B1A0E18F1005F5F77 /* CoreDataHelper.m */; };
 		849641A81A0E290F005F5F77 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 849641A61A0E290F005F5F77 /* DataModel.xcdatamodeld */; };
-		849641AB1A0E292E005F5F77 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 849641AA1A0E292E005F5F77 /* Song.m */; };
+		849641AB1A0E292E005F5F77 /* CoreDataContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849641AA1A0E292E005F5F77 /* CoreDataContainer.m */; };
+		849DE6C61A108EDE00069824 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849DE6C51A108EDE00069824 /* SystemConfiguration.framework */; };
 		849EF2351A00E2CB00E8DF08 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2341A00E2CB00E8DF08 /* main.m */; };
 		849EF2381A00E2CB00E8DF08 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2371A00E2CB00E8DF08 /* AppDelegate.m */; };
 		849EF23B1A00E2CB00E8DF08 /* YouTubePlaylists.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 849EF2391A00E2CB00E8DF08 /* YouTubePlaylists.xcdatamodeld */; };
@@ -72,8 +73,9 @@
 		8496419A1A0E18F1005F5F77 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		8496419B1A0E18F1005F5F77 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		849641A71A0E290F005F5F77 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		849641A91A0E292E005F5F77 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
-		849641AA1A0E292E005F5F77 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
+		849641A91A0E292E005F5F77 /* CoreDataContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataContainer.h; sourceTree = "<group>"; };
+		849641AA1A0E292E005F5F77 /* CoreDataContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataContainer.m; sourceTree = "<group>"; };
+		849DE6C51A108EDE00069824 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		849EF22F1A00E2CB00E8DF08 /* YouTubePlaylists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubePlaylists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849EF2331A00E2CB00E8DF08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		849EF2341A00E2CB00E8DF08 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849DE6C61A108EDE00069824 /* SystemConfiguration.framework in Frameworks */,
 				849EF2601A00F7A600E8DF08 /* libPods-YouTubePlaylists-gtm-oauth2.a in Frameworks */,
 				849EF25E1A00F78700E8DF08 /* libPods-YouTubePlaylists-googleplus-ios-sdk.a in Frameworks */,
 				3E2B20FA15E1EA6B755D5B6B /* libPods-YouTubePlaylists.a in Frameworks */,
@@ -125,6 +128,7 @@
 		7AC1C70D367DE682346BFD74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				849DE6C51A108EDE00069824 /* SystemConfiguration.framework */,
 				8451FBFD1A0CEFEC001BF49A /* youtube-ios-player-helper */,
 				849EF25F1A00F7A600E8DF08 /* libPods-YouTubePlaylists-gtm-oauth2.a */,
 				849EF25D1A00F78700E8DF08 /* libPods-YouTubePlaylists-googleplus-ios-sdk.a */,
@@ -145,8 +149,8 @@
 				840A27F71A04FA7800C678DF /* YouTubeVideoModel.h */,
 				840A27F81A04FA7800C678DF /* YouTubeVideoModel.m */,
 				849641A61A0E290F005F5F77 /* DataModel.xcdatamodeld */,
-				849641A91A0E292E005F5F77 /* Song.h */,
-				849641AA1A0E292E005F5F77 /* Song.m */,
+				849641A91A0E292E005F5F77 /* CoreDataContainer.h */,
+				849641AA1A0E292E005F5F77 /* CoreDataContainer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -469,7 +473,7 @@
 				840A27F61A04FA2500C678DF /* YouTubePlaylistModel.m in Sources */,
 				849641A81A0E290F005F5F77 /* DataModel.xcdatamodeld in Sources */,
 				849EF2381A00E2CB00E8DF08 /* AppDelegate.m in Sources */,
-				849641AB1A0E292E005F5F77 /* Song.m in Sources */,
+				849641AB1A0E292E005F5F77 /* CoreDataContainer.m in Sources */,
 				8478311C1A0D5CAA007FAFD4 /* BackgroundMusicController.m in Sources */,
 				8451FBFE1A0CEFEC001BF49A /* YTPlayerView.m in Sources */,
 				84888FEE1A0A179600714EF3 /* YouTubeSignInViewController.m in Sources */,

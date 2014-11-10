@@ -10,8 +10,8 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Song : NSManagedObject
+@interface CoreDataContainer : NSManagedObject
 
-@property (nonatomic, retain) NSString * backgroundMusic;
+@property (nonatomic, retain) NSString * ytPlaylistId;
 
 @end

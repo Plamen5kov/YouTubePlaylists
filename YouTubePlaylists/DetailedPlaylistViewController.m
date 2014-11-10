@@ -10,6 +10,7 @@
 #import "YouTubeVideoModel.h"
 #import "GoogleRegisteredUserModel.h"
 #import "AppDelegate.h"
+#import "CoreDataContainer.h"
 
 @interface DetailedPlaylistViewController ()<NSURLConnectionDelegate>
     @property (strong, nonatomic) NSMutableData* receivedData;
@@ -28,6 +29,8 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [appDel loadSpinnerWithContext:self];
     
     [self registerReusableCell];
     
@@ -124,14 +127,19 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
         [videosInPlaylist addObject:video];
     }
     
+    [appDel.spinner stopAnimating];
     [self.tableView reloadData];
     
     self.conn = nil;
     self.receivedData = nil;
-
 }
 
 #pragma mark TableView
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -166,6 +174,26 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
 }
 
 #pragma mark Helper methods
+
+-(NSString *) loadSelectedPlaylistId{
+    NSString* selectedPlaylistId;
+    NSFetchRequest *request;
+    @try {
+        request = [NSFetchRequest fetchRequestWithEntityName:@"CoreDataContainer"];
+        NSMutableArray *resultArray = [NSMutableArray arrayWithArray:[appDel.coreDataHelper.context executeFetchRequest:request error:nil]];
+        CoreDataContainer* songObject = [resultArray objectAtIndex:0];
+        NSString* playlistId = songObject.ytPlaylistId;
+        NSLog(@"DATA: %@", playlistId);
+        selectedPlaylistId = playlistId;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"data loading failed");
+    }
+    @finally {
+        request = nil;
+    }
+    return selectedPlaylistId;
+}
 
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {

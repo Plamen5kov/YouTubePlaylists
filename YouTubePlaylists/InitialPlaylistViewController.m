@@ -13,25 +13,22 @@
 #import "BackgroundMusicController.h"
 #import <CoreMotion/CoreMotion.h>
 #import "CoreDataHelper.h"
-#import "Song.h"
+#import "CoreDataContainer.h"
 #import "AppDelegate.h"
 #import "DetailedPlaylistViewController.h"
 
 @interface InitialPlaylistViewController ()<NSURLConnectionDataDelegate>
 @property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *longPressGesture;
-//@property(nonatomic, strong) AVAudioPlayer *backgroundMusic;
 @property (strong, nonatomic) CMMotionManager *motionManager;
-@property(nonatomic, strong) CoreDataHelper* helper;
 @end
 
 @implementation InitialPlaylistViewController{
     NSString* cellSelector;
     NSMutableArray* playList;
     GoogleRegisteredUserModel* user;
-    UIActivityIndicatorView *spinner;
+//    UIActivityIndicatorView *spinner;
     AppDelegate* appDel;
     NSString* authenticationToken;
-//    BackgroundMusicController* audioController;
     NSMutableData *receivedData;
 }
 
@@ -42,33 +39,17 @@
     
     appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    [self loadSpinner];
+    [appDel loadSpinnerWithContext:self];
     [self appendLongPressGesture];
     [appDel.backgroundMusic play];
 //    [self setUpMotionManager];
     
-//    self.helper = [[CoreDataHelper alloc] init];
-//    [self.helper setupCoreData];
-//    AppDelegate* b = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [self addDataToCoreData];
-//    [self loadData];
-    
 }
 
--(void) loadData{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Song"];
-    NSMutableArray *arr = [NSMutableArray arrayWithArray:[self.helper.context executeFetchRequest:request error:nil]];
-    Song* songObject = [arr objectAtIndex:0];
-    NSString* songName = songObject.backgroundMusic;
-    
-    NSLog(@"DATA: %@", songName);
-}
-
--(void) addDataToCoreData{
-    Song *model= [NSEntityDescription insertNewObjectForEntityForName:@"Song" inManagedObjectContext:self.helper.context];
-//    [model.backgroundSong setValue:@"asdasjdkgasodk" forKey:@"backgroundSong"];
-    model.backgroundMusic = @"aslduasda";
-    [self.helper saveContext];
+-(void) addCurrentPlaylistId: (NSString *) playlistId{
+    CoreDataContainer *model= [NSEntityDescription insertNewObjectForEntityForName:@"CoreDataContainer" inManagedObjectContext:appDel.coreDataHelper.context];
+    model.ytPlaylistId = playlistId;
+    [appDel.coreDataHelper saveContext];
 }
 
 #pragma mark core motion
@@ -210,13 +191,6 @@
 
 #pragma mark - Helper methods
 
--(void) loadSpinner {
-    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = CGPointMake((self.view.frame.size.width / 2), 100);
-    [self.view addSubview:spinner];
-    [spinner startAnimating];
-}
-
 - (UIView *)customSnapshoFromView:(UIView *)inputView {
     
     UIView *snapshot = [inputView snapshotViewAfterScreenUpdates:YES];
@@ -233,7 +207,7 @@
     
     authenticationToken = authenticatedUser.accessToken;
     
-    NSString* url = @"https://www.googleapis.com/youtube/v3/playlists?part=snippet&mine=true&key=902472583724-ul05lna38kfh37v8mp18bli09s0b84ti.apps.googleusercontent.com";
+    NSString* url = @"https://www.googleapis.com/youtube/v3/playlists?part=snippet&maxResults=50&mine=true&key=902472583724-ul05lna38kfh37v8mp18bli09s0b84ti.apps.googleusercontent.com";
 
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     
@@ -249,6 +223,7 @@
 }
 
 #pragma mark - NSURLConnectionDataDelegate protocol
+
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     [receivedData appendData:data];
 }
@@ -272,14 +247,10 @@
         [playList addObject:list];
     }
     
-    [spinner stopAnimating];
+    [appDel.spinner stopAnimating];
     [self.subTableView reloadData];
 
 }
-
-//-(void)connection:(NSURLRequest *) request didReceiveData:(NSData *)data{
-//
-//    }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     NSLog(@"RECIEVED ERROR IS: %@", error);
@@ -288,6 +259,10 @@
 #pragma mark - Table view data source
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString* selectedPlaylistId = ((YouTubePlaylistModel *)([playList objectAtIndex:indexPath.row])).playlistId;
+    NSLog(@"SELECTED PLAYLIST ID: %@", selectedPlaylistId);
+    [self addCurrentPlaylistId:selectedPlaylistId];
+    
     //take detailsController from storyboard
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:
                                 @"Main" bundle:[NSBundle mainBundle]];

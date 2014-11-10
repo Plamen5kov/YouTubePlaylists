@@ -56,7 +56,6 @@ NSString* storeFilename = @"CDatabase.sqlite";
 }
 
 -(void) loadStore{
-    
     if(_store){
         return;
     }

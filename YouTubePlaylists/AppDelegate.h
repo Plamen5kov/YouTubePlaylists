@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BackgroundMusicController.h"
+#import "CoreDataHelper.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -27,6 +28,11 @@
 @property (nonatomic, strong) BackgroundMusicController* audioController;
 @property(nonatomic, strong) AVAudioPlayer *backgroundMusic;
 
+@property(nonatomic, strong) CoreDataHelper* coreDataHelper;
+
+@property (nonatomic, strong) UIActivityIndicatorView *spinner;
+-(void) loadSpinnerWithContext: (UIViewController*) delegate;
+    
 - (NSURL *)applicationDocumentsDirectory;
 
 
