@@ -34,6 +34,8 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     
     [appDel loadSpinnerWithContext:self];
     
+//    [self setUpBackground];
+    
     [self appendLongPressGesture];
     
     [self registerReusableCell];
@@ -222,6 +224,11 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
 }
 
 #pragma mark Helper methods
+
+-(void) setUpBackground{
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"apple.jpg"]];
+    [self.tableView setAlpha:0.5];
+}
 
 -(void) appendLongPressGesture {
     self.longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];

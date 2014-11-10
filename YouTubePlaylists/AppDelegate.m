@@ -41,7 +41,7 @@
 }
 
 -(void) loadSpinnerWithContext: (UIViewController*) delegate {
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.spinner.center = CGPointMake((delegate.view.frame.size.width / 2), (delegate.view.frame.size.height / 2));
     [delegate.view addSubview:self.spinner];
     [self.spinner startAnimating];

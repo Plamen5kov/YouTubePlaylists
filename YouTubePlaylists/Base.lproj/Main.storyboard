@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fSo-MC-GHY">
-                                <rect key="frame" x="16" y="72" width="568" height="514"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fSo-MC-GHY">
+                                <rect key="frame" x="0.0" y="71" width="600" height="529"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <prototypes>
@@ -37,6 +37,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fSo-MC-GHY" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="85a-gr-8d4"/>
+                            <constraint firstItem="fSo-MC-GHY" firstAttribute="bottom" secondItem="GCB-HF-nY8" secondAttribute="top" id="AA7-EX-NKa"/>
+                            <constraint firstItem="fSo-MC-GHY" firstAttribute="top" secondItem="Iv0-EM-sZZ" secondAttribute="bottom" constant="51" id="hdR-3R-MGY"/>
+                            <constraint firstAttribute="trailing" secondItem="fSo-MC-GHY" secondAttribute="trailing" id="sdN-aM-5RK"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DVo-Fq-JEI"/>
                     <connections>
@@ -110,11 +116,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" verticalHuggingPriority="550" translatesAutoresizingMaskIntoConstraints="NO" id="5wl-KQ-gcb" customClass="YTPlayerView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="212"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="157"/>
                                 <color key="backgroundColor" red="0.44175880610000001" green="1" blue="0.92756814880000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="VideosTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="TNf-8c-PXz">
-                                <rect key="frame" x="0.0" y="275" width="600" height="325"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="VideosTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="100" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="TNf-8c-PXz">
+                                <rect key="frame" x="0.0" y="216" width="600" height="376"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -125,14 +131,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5wl-KQ-gcb" firstAttribute="leading" secondItem="TNf-8c-PXz" secondAttribute="leading" id="D96-Zv-HmF"/>
-                            <constraint firstItem="5wl-KQ-gcb" firstAttribute="leading" secondItem="8Hp-pk-JOF" secondAttribute="leading" id="Dr9-cI-nR8"/>
-                            <constraint firstItem="5wl-KQ-gcb" firstAttribute="top" secondItem="Mjt-Nx-DOi" secondAttribute="bottom" id="HIi-z2-1mP"/>
-                            <constraint firstItem="5wl-KQ-gcb" firstAttribute="trailing" secondItem="TNf-8c-PXz" secondAttribute="trailing" id="MCc-VE-YFE"/>
-                            <constraint firstItem="TNf-8c-PXz" firstAttribute="bottom" secondItem="xLl-Jq-UGP" secondAttribute="top" id="NNk-SQ-gtr"/>
-                            <constraint firstItem="xLl-Jq-UGP" firstAttribute="top" secondItem="5wl-KQ-gcb" secondAttribute="bottom" constant="324" id="Tkk-3x-QYw"/>
-                            <constraint firstAttribute="trailing" secondItem="TNf-8c-PXz" secondAttribute="trailing" id="YzJ-9j-0dl"/>
-                            <constraint firstItem="TNf-8c-PXz" firstAttribute="top" secondItem="Mjt-Nx-DOi" secondAttribute="bottom" constant="211" id="pQi-X4-jgq"/>
+                            <constraint firstItem="5wl-KQ-gcb" firstAttribute="leading" secondItem="8Hp-pk-JOF" secondAttribute="leading" id="4If-s9-9WI"/>
+                            <constraint firstAttribute="trailing" secondItem="TNf-8c-PXz" secondAttribute="trailing" id="6dH-qH-uKW"/>
+                            <constraint firstItem="TNf-8c-PXz" firstAttribute="trailing" secondItem="5wl-KQ-gcb" secondAttribute="trailing" id="I6a-Ns-gUT"/>
+                            <constraint firstAttribute="bottom" secondItem="5wl-KQ-gcb" secondAttribute="bottom" constant="379" id="QnC-EC-17u"/>
+                            <constraint firstItem="TNf-8c-PXz" firstAttribute="leading" secondItem="5wl-KQ-gcb" secondAttribute="leading" id="TF4-ae-eaD"/>
+                            <constraint firstItem="5wl-KQ-gcb" firstAttribute="top" secondItem="Mjt-Nx-DOi" secondAttribute="bottom" id="VFN-c4-3pM"/>
+                            <constraint firstItem="TNf-8c-PXz" firstAttribute="top" secondItem="Mjt-Nx-DOi" secondAttribute="bottom" constant="152" id="XIa-Ty-UnL"/>
+                            <constraint firstItem="xLl-Jq-UGP" firstAttribute="top" secondItem="TNf-8c-PXz" secondAttribute="bottom" constant="8" symbolic="YES" id="kSm-hJ-EmY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w0w-Sg-CIq">

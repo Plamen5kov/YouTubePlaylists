@@ -37,6 +37,8 @@
     cellSelector = @"PlaylistCell";
     receivedData = [[NSMutableData alloc]init];
     
+    [self setUpBackground];
+    
     appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     [appDel loadSpinnerWithContext:self];
@@ -190,6 +192,11 @@
 }
 
 #pragma mark - Helper methods
+
+-(void) setUpBackground{
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"apple.jpg"]];
+    [self.subTableView setAlpha:0.5];
+}
 
 - (UIView *)customSnapshoFromView:(UIView *)inputView {
     

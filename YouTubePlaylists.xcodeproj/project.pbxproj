@@ -17,6 +17,7 @@
 		8451FC021A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451FBFA1A0CEFEC001BF49A /* Pods-YouTubePlaylists-youtube-ios-player-helper-dummy.m */; };
 		847831191A0D5C11007FAFD4 /* chill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 847831181A0D5C11007FAFD4 /* chill.mp3 */; };
 		8478311C1A0D5CAA007FAFD4 /* BackgroundMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */; };
+		84807B3E1A10EB98007A736F /* apple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84807B3D1A10EB98007A736F /* apple.jpg */; };
 		84888FEE1A0A179600714EF3 /* YouTubeSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */; };
 		8496419C1A0E18F1005F5F77 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8496419B1A0E18F1005F5F77 /* CoreDataHelper.m */; };
 		849641A81A0E290F005F5F77 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 849641A61A0E290F005F5F77 /* DataModel.xcdatamodeld */; };
@@ -68,6 +69,7 @@
 		847831181A0D5C11007FAFD4 /* chill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chill.mp3; sourceTree = "<group>"; };
 		8478311A1A0D5CAA007FAFD4 /* BackgroundMusicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundMusicController.h; sourceTree = "<group>"; };
 		8478311B1A0D5CAA007FAFD4 /* BackgroundMusicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundMusicController.m; sourceTree = "<group>"; };
+		84807B3D1A10EB98007A736F /* apple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple.jpg; sourceTree = "<group>"; };
 		84888FEB1A0A179600714EF3 /* YouTubeSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeSignInViewController.h; sourceTree = "<group>"; };
 		84888FEC1A0A179600714EF3 /* YouTubeSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeSignInViewController.m; sourceTree = "<group>"; };
 		8496419A1A0E18F1005F5F77 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		847831171A0D5C01007FAFD4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84807B3D1A10EB98007A736F /* apple.jpg */,
 				847831181A0D5C11007FAFD4 /* chill.mp3 */,
 			);
 			name = Resources;
@@ -414,6 +417,7 @@
 				849EF2411A00E2CB00E8DF08 /* Main.storyboard in Resources */,
 				849EF2461A00E2CB00E8DF08 /* LaunchScreen.xib in Resources */,
 				849EF2431A00E2CB00E8DF08 /* Images.xcassets in Resources */,
+				84807B3E1A10EB98007A736F /* apple.jpg in Resources */,
 				84D42A011A0A28F500C0F7CC /* VideoDetailsTableViewCell.xib in Resources */,
 				847831191A0D5C11007FAFD4 /* chill.mp3 in Resources */,
 				8451FBFF1A0CEFEC001BF49A /* Assets in Resources */,
