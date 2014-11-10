@@ -41,6 +41,8 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     [self makePlaylistItemsRequest];
     
     [self.tableView reloadData];
+    
+    [self attachGestureListener];
 }
 
 #pragma mark playlist requests
@@ -140,11 +142,92 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
 
 #pragma mark TableView
 
+//-(void)cellSwipe:(UISwipeGestureRecognizer *)gesture
+//{
+//    CGPoint location = [gesture locationInView:self.tableView];
+//
+//    NSLog(@"%f", location.x);
+//    NSLog(@"%f", location.y);
+////    CGPoint location = [gesture locationInView:self.tableView];
+////    NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
+////    UITableViewCell *swipedCell  = [self.tableView cellForRowAtIndexPath:swipedIndexPath];
+////    
+////    //Your own code...
+//}
+
+- (UIView *)customSnapshoFromView:(UIView *)inputView {
+    
+    UIView *snapshot = [inputView snapshotViewAfterScreenUpdates:YES];
+    snapshot.layer.masksToBounds = NO;
+    snapshot.layer.cornerRadius = 0.0;
+    snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0);
+    snapshot.layer.shadowRadius = 5.0;
+    snapshot.layer.shadowOpacity = 0.4;
+    
+    return snapshot;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [videosInPlaylist removeObjectAtIndex:indexPath.row];
+//    }
+        [videosInPlaylist removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return videosInPlaylist.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    VideoDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier]; //use registered cell
+    
+    cell.videoTitle.text = [videosInPlaylist[indexPath.row] vTitle];
+    cell.videoTitle.numberOfLines = 2;
+    cell.videoId.text = [videosInPlaylist[indexPath.row] vId];
+    NSString *imageUrl = [videosInPlaylist[indexPath.row] vThumbnailURL];
+    
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]]
+                                                                    queue:[NSOperationQueue mainQueue]
+                                                        completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                                            
+                                                            cell.thumbnailImageView.image = [UIImage imageWithData:data];
+    }];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    VideoDetailsTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self.playerView loadWithVideoId:cell.videoId.text];
+}
+
+#pragma mark Helper methods
 
 -(void) appendLongPressGesture {
     self.longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
     [self.tableView addGestureRecognizer:self.longPressGesture];
 }
+
 
 - (IBAction)longPressGestureRecognized:(id)sender {
     
@@ -236,69 +319,11 @@ static NSString* cellIdentifier = @"VideoDetailsTableViewCell";
     }
 }
 
-- (UIView *)customSnapshoFromView:(UIView *)inputView {
-    
-    UIView *snapshot = [inputView snapshotViewAfterScreenUpdates:YES];
-    snapshot.layer.masksToBounds = NO;
-    snapshot.layer.cornerRadius = 0.0;
-    snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0);
-    snapshot.layer.shadowRadius = 5.0;
-    snapshot.layer.shadowOpacity = 0.4;
-    
-    return snapshot;
+-(void) attachGestureListener {
+    UISwipeGestureRecognizer *showExtrasSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwipe:)];
+    showExtrasSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.tableView addGestureRecognizer:showExtrasSwipe];
 }
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [videosInPlaylist removeObjectAtIndex:indexPath.row];
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 40;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return videosInPlaylist.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    VideoDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier]; //use registered cell
-    
-    cell.videoTitle.text = [videosInPlaylist[indexPath.row] vTitle];
-    cell.videoTitle.numberOfLines = 2;
-    cell.videoId.text = [videosInPlaylist[indexPath.row] vId];
-    NSString *imageUrl = [videosInPlaylist[indexPath.row] vThumbnailURL];
-    
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]]
-                                                                    queue:[NSOperationQueue mainQueue]
-                                                        completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                                            
-                                                            cell.thumbnailImageView.image = [UIImage imageWithData:data];
-    }];
-    
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    VideoDetailsTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self.playerView loadWithVideoId:cell.videoId.text];
-}
-
-#pragma mark Helper methods
 
 -(NSString *) loadSelectedPlaylistId{
     NSString* selectedPlaylistId;

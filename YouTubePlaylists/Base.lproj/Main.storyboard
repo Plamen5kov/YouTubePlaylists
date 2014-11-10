@@ -109,18 +109,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" verticalHuggingPriority="550" translatesAutoresizingMaskIntoConstraints="NO" id="5wl-KQ-gcb" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="212"/>
+                                <color key="backgroundColor" red="0.44175880610000001" green="1" blue="0.92756814880000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="VideosTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="TNf-8c-PXz">
                                 <rect key="frame" x="0.0" y="275" width="600" height="325"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="dataSource" destination="X8t-ki-Y4d" id="2M5-X7-SKz"/>
                                     <outlet property="delegate" destination="X8t-ki-Y4d" id="V4w-iJ-AnP"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" verticalHuggingPriority="550" translatesAutoresizingMaskIntoConstraints="NO" id="5wl-KQ-gcb" customClass="YTPlayerView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="212"/>
-                                <color key="backgroundColor" red="0.44175880610000001" green="1" blue="0.92756814880000005" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

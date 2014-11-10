@@ -55,6 +55,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="LZP-Oj-k7p" secondAttribute="bottom" constant="-2" id="rpv-z8-fGT"/>
                 </constraints>
             </tableViewCellContentView>
+            <gestureRecognizers/>
             <connections>
                 <outlet property="donloadToMP3Button" destination="LZP-Oj-k7p" id="Lgd-M4-OuQ"/>
                 <outlet property="thumbnailImageView" destination="O9m-S3-yuD" id="KxJ-Ai-0AF"/>
