@@ -1,6 +1,6 @@
 YouTubePlaylists
 ================
-Optimized youtube playlist app for test purposes only
+Optimized youtube playlist iOS app for test purposes only
 
 ===============
 Team: 
